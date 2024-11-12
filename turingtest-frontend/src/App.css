@@ -1,21 +1,44 @@
-html, body, #root {
+/* General Reset for body, html, and root */
+html,
+body,
+#root {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-#root {
+/* Main Page Layout */
+.main-page {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
+/* background Styling */
+.backgroud {
+  color: white;
+  margin-bottom: 2vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 11vh 2vh;
+  border-radius: vh;
+  text-align: center;
+}
+/* Header Text Styling */
+.header-text {
+  font-size: 3vh;
+  color: white;
+  margin-bottom: 2vh;
+}
+
+/* Chat Container Styling */
 .chat-container {
-  flex: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 40vh;
+  height: 30vh;
+  width: 50vw;
   margin: 5vh auto;
   border: 0.1vh solid #ccc;
   border-radius: 3vh;
@@ -23,49 +46,69 @@ html, body, #root {
   background-color: rgb(46, 46, 46);
 }
 
+/* Chat Box Layout */
 .chat-box {
   flex: 1;
-  max-height: calc(100vh - 60px);
+  font-size: medium;
+  height: 35vh;
+  max-height: 35vh;
   overflow-y: auto;
-  margin-bottom: 10vh;
+  margin-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1vh;
 }
 
+/* Individual Chat Message Styling */
 .chat-message {
   padding: 1vh;
   margin-bottom: 1vh;
-  border-radius: 0.5vh;
+  border-radius: 5vh;
+  background-color: #85b446;
+  color: white;
+  max-width: 80%;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
+/* Input Area Styling */
 .input-area {
   display: flex;
   align-items: center;
   position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding: 2vh;
-}
-
-.input-area > div {
-  flex: 1;
-}
-
-input {
-  width: 100%;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 1vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 1vh;
+  max-width: 70vw;
+}
+
+/* Input Field Styling */
+input {
+  padding: 1.5vh;
   border: 0.1vh solid #0d0202;
   border-radius: 0.5vh;
-  margin-right: 1vh;
+
+  width: 35vw;
+  max-width: 65vw;
+  box-sizing: border-box;
 }
 
+/* Button Styling */
 button {
-  padding: 1vh 1.5vh;
-  background-color: #4CAF50;
+  padding: 1.5vh 2vh;
+  background-color: #85b446;
   color: white;
   border: none;
   border-radius: 0.5vh;
   cursor: pointer;
+  white-space: nowrap;
 }
 
+/* Button Hover State */
 button:hover {
   background-color: #45a049;
 }
