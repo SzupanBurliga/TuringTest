@@ -30,7 +30,7 @@ function TuringTest() {
                 achieving nuanced, contextually appropriate responses across diverse
                 topics.</h3>
 
-            <button onClick={() => navigate("/TitlePage")}>Go back</button>
+            <button onClick={() => navigate("/")}>Go back</button>
         </div>
 
 
