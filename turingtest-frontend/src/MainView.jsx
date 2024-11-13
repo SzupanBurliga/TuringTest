@@ -3,13 +3,16 @@ import "./App.css";
 import ChatWindow from "./ChatWindow";
 import UserInput from "./UserInput";
 import SendButton from "./SendButton";
+import Modal from "./Modal";
 
 function MainView() {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
-  const [timer, setTimer] = useState(120);
-  const [isTimerActive, setIsTimerActive] = useState(false);
+  const [timer, setTimer] = useState(128);
+  const [isTimerActive, setIsTimerActive] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [vote, setVote] = useState(null);
 
   const handleInputChange = (event) => {
     setMessage(event.target.value);
@@ -24,6 +27,10 @@ function MainView() {
       setChatHistory([...chatHistory, message]);
       setMessage("");
     }
+  };
+  const handleVote = (selectedVote) => {
+    setVote(selectedVote);
+    console.log(`User voted: ${selectedVote}`);
   };
   useEffect(() => {
     const randomLoadTime = Math.floor(Math.random() * 4000) + 4000;
@@ -42,6 +49,7 @@ function MainView() {
       }, 1000);
     } else if (timer === 0) {
       setIsTimerActive(false);
+      setIsModalVisible(true);
     }
     return () => clearInterval(interval);
   }, [isTimerActive, timer]);
@@ -53,6 +61,9 @@ function MainView() {
     const seconds = (time % 60).toString().padStart(2, "0");
     return `${minutes}:${seconds}`;
   };
+  const closeModal = () => {
+    setIsModalVisible(false);
+  }
   if(isLoading) {
     return(
         <div className="loader">
@@ -65,6 +76,14 @@ function MainView() {
 
   return (
     <div className="backgroud">
+      {isModalVisible && (
+          <Modal
+              title="Time's Up!"
+              message="Who do you think you were chatting with?"
+              closeModal={closeModal}
+              onVote={handleVote}
+          />
+      )}
       <div className="container-for-header-timer">
         <div className="header-text">Welcome to the Chat!</div>
         <div className="timer">{formatTime(timer)}</div>
