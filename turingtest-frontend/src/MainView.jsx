@@ -9,6 +9,7 @@ function MainView() {
   const [chatHistory, setChatHistory] = useState([]);
   const [timer, setTimer] = useState(120);
   const [isTimerActive, setIsTimerActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleInputChange = (event) => {
     setMessage(event.target.value);
@@ -24,6 +25,14 @@ function MainView() {
       setMessage("");
     }
   };
+  useEffect(() => {
+    const randomLoadTime = Math.floor(Math.random() * 4000) + 4000;
+    const loadTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, randomLoadTime);
+
+    return () => clearTimeout(loadTimer);
+  }, []);
 
   useEffect(() => {
     let interval;
@@ -44,6 +53,15 @@ function MainView() {
     const seconds = (time % 60).toString().padStart(2, "0");
     return `${minutes}:${seconds}`;
   };
+  if(isLoading) {
+    return(
+        <div className="loader">
+          <img src= "/Spinner.svg" alt ="Loading spinner" className="spinner"/>
+          <div className="loader-text">Searching for your partner...</div>
+        </div>
+    );
+  }
+
 
   return (
     <div className="backgroud">
