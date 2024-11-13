@@ -16,6 +16,43 @@ body,
   min-height: 100vh;
 }
 
+.title-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #242424;
+}
+
+.title-content {
+  text-align: center;
+  color: white;
+}
+
+.title-content h1 {
+  font-size: 4vh;
+  margin-bottom: 2vh;
+}
+
+.title-content h3 {
+  font-size: 2.5vh;
+  margin-bottom: 2vh;
+}
+
+.title-content button {
+  padding: 1vh 2vh;
+  margin: 1vh;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 0.5vh;
+  cursor: pointer;
+}
+
+.title-content button:hover {
+  background-color: #45a049;
+}
+
 /* background Styling */
 .backgroud {
   color: white;
