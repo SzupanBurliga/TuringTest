@@ -1,0 +1,13 @@
+.MainTuring{
+    text-align: center;
+    margin: auto;
+    width: 90%;
+    max-height: 95%;
+}
+.TuringButton{
+    margin-bottom: 3vh;
+}
+img{
+    width: 40%;
+    height: 25%;
+}

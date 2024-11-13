@@ -1,10 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./turing.css";
 
 function TuringTest() {
   const navigate = useNavigate();
   return (
-    <div className="main-page">
+
+    <div className="MainTuring">
+
       <h1>About Turing Test</h1>
       <h3>
         The Turing Test is a concept introduced by British mathematician and
@@ -33,8 +36,7 @@ function TuringTest() {
         Turing Test remains a high bar, especially in terms of achieving
         nuanced, contextually appropriate responses across diverse topics.
       </h3>
-
-      <button onClick={() => navigate("/")}>Go back</button>
+        <button onClick={() => navigate("/")}>Go back</button>
     </div>
   );
 }
