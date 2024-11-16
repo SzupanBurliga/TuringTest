@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5174",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
@@ -30,7 +30,7 @@ io.on("connection", (socket) => {
 
   socket.on("message", (data) => {
     console.log(`Message from ${socket.id}:`, data);
-    io.emit("message", { user: data.user, message: data.message }); // Emituj obiekt do klientów
+    io.emit("message", { user: data.user, message: data.message }); 
   });
 
   socket.on("disconnect", () => {

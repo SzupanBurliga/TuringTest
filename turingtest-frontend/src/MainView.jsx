@@ -17,9 +17,9 @@ function MainView() {
   const [isTimerActive, setIsTimerActive] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [vote, setVote] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Listen for incoming messages
     socket.on("message", (data) => {
       setChatHistory((prevChat) => [...prevChat, data]);
     });
@@ -30,7 +30,6 @@ function MainView() {
   }, []);
 
   useEffect(() => {
-    // Timer logic
     let interval;
     if (isTimerActive && timer > 0) {
       interval = setInterval(() => {
@@ -38,7 +37,7 @@ function MainView() {
       }, 1000);
     } else if (timer === 0) {
       setIsTimerActive(false);
-      setIsModalVisible(true); // Show the modal when timer ends
+      setIsModalVisible(true);
     }
 
     return () => clearInterval(interval);
@@ -46,9 +45,13 @@ function MainView() {
 
   const handleSetUsername = () => {
     if (username.trim()) {
-      socket.emit("setUsername", username); // Send username to server
+      socket.emit("setUsername", username);
       setIsUsernameSet(true);
-      setIsTimerActive(true); // Start the timer when username is set
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, Math.random() * (3000 - 2000) + 4000);
+      setIsTimerActive(true);
     }
   };
 
@@ -58,7 +61,7 @@ function MainView() {
 
   const handleSendMessage = () => {
     if (message.trim()) {
-      socket.emit("message", { user: username, message }); // Wysłanie obiektu zamiast stringa
+      socket.emit("message", { user: username, message });
       setMessage("");
     }
   };
@@ -91,6 +94,15 @@ function MainView() {
           placeholder="Enter your username"
         />
         <button onClick={handleSetUsername}>Set Username</button>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="loader">
+        <div className="spinner"></div>
+        <div className="loader-text">Loading...</div>
       </div>
     );
   }

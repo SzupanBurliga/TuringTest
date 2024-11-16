@@ -1,4 +1,3 @@
-/* General Reset for body, html, and root */
 html,
 body,
 #root {
@@ -8,7 +7,6 @@ body,
   padding: 0;
 }
 
-/* Main Page Layout */
 .main-page {
   display: flex;
   justify-content: center;
@@ -53,7 +51,6 @@ body,
   background-color: #45a049;
 }
 
-/* background Styling */
 .backgroud {
   color: white;
   margin-bottom: 2vh;
@@ -74,14 +71,14 @@ body,
   border-radius: 1vh;
   max-width: 70vw;
 }
-/* container for header timer  Styling */
+
 .container-for-header-timer {
   display: flex;
   width: 75vw;
   align-items: center;
   justify-content: space-between;
 }
-/* header text  Styling */
+
 .header-text {
   font-size: 4vh;
   color: white;
@@ -98,11 +95,11 @@ body,
   margin-left: 1vw;
 }
 
-/* Chat Container Styling */
 .chat-container {
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   height: 40vh;
   width: 50vw;
   margin: 5vh auto;
@@ -111,25 +108,40 @@ body,
   padding: 5vh;
   background-color: rgb(46, 46, 46);
 }
+
 .loader {
-  position: fixed; /* Makes the loader stay in the middle even when scrolling */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .spinner {
-  margin-bottom: 10px;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
 }
 
 .loader-text {
-  font-size: 16px;
-  color: #fff;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
 }
-/* Chat Box Layout */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .chat-box {
   flex: 1;
   font-size: medium;
@@ -143,7 +155,6 @@ body,
   gap: 1vh;
 }
 
-/* Individual Chat Message Styling */
 .chat-message {
   padding: 1vh;
   margin-bottom: 1vh;
@@ -156,7 +167,6 @@ body,
   white-space: normal;
 }
 
-/* Input Area Styling */
 .input-area {
   display: flex;
   align-items: center;
@@ -170,7 +180,6 @@ body,
   max-width: 70vw;
 }
 
-/* Input Field Styling */
 input {
   padding: 1.5vh;
   border: 0.1vh solid #0d0202;
@@ -181,7 +190,6 @@ input {
   box-sizing: border-box;
 }
 
-/* Button Styling */
 button {
   padding: 1.5vh 2vh;
   background-color: #85b446;
@@ -192,7 +200,6 @@ button {
   white-space: nowrap;
 }
 
-/* Button Hover State */
 button:hover {
   background-color: #45a049;
 }
