@@ -42,7 +42,7 @@ body,
 .title-content button {
   padding: 1vh 2vh;
   margin: 1vh;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 0.5vh;
@@ -61,6 +61,18 @@ body,
   padding: 8vh 2vh;
   border-radius: vh;
   text-align: center;
+}
+.username-setup {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 1vh;
+  max-width: 70vw;
 }
 /* container for header timer  Styling */
 .container-for-header-timer {
@@ -100,7 +112,7 @@ body,
   background-color: rgb(46, 46, 46);
 }
 .loader {
-  position: fixed;  /* Makes the loader stay in the middle even when scrolling */
+  position: fixed; /* Makes the loader stay in the middle even when scrolling */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -138,7 +150,8 @@ body,
   border-radius: 5vh;
   background-color: #85b446;
   color: white;
-  max-width: 80%;
+  width: flex;
+  max-width: 40%;
   word-wrap: break-word;
   white-space: normal;
 }
@@ -183,4 +196,3 @@ button {
 button:hover {
   background-color: #45a049;
 }
-

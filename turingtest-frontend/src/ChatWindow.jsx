@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 function ChatWindow({ chatHistory }) {
   return (
-    <div className="chat-box">
-      {chatHistory.map((msg, index) => (
+    <div className="chat-window">
+      {chatHistory.map((entry, index) => (
         <div key={index} className="chat-message">
-          {msg}
+          <strong>{entry.user}:</strong> {entry.message}
         </div>
       ))}
     </div>

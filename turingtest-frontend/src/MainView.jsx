@@ -1,47 +1,36 @@
 import React, { useState, useEffect } from "react";
+import { io } from "socket.io-client";
 import "./App.css";
 import ChatWindow from "./ChatWindow";
 import UserInput from "./UserInput";
 import SendButton from "./SendButton";
 import Modal from "./Modal";
 
+const socket = io("http://localhost:3001");
+
 function MainView() {
+  const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
+  const [isUsernameSet, setIsUsernameSet] = useState(false);
   const [timer, setTimer] = useState(128);
   const [isTimerActive, setIsTimerActive] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [vote, setVote] = useState(null);
 
-  const handleInputChange = (event) => {
-    setMessage(event.target.value);
-  };
-
-  const handleSendMessage = () => {
-    if (message.trim()) {
-      if (!isTimerActive) {
-        setIsTimerActive(true);
-      }
-
-      setChatHistory([...chatHistory, message]);
-      setMessage("");
-    }
-  };
-  const handleVote = (selectedVote) => {
-    setVote(selectedVote);
-    console.log(`User voted: ${selectedVote}`);
-  };
   useEffect(() => {
-    const randomLoadTime = Math.floor(Math.random() * 4000) + 4000;
-    const loadTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, randomLoadTime);
+    // Listen for incoming messages
+    socket.on("message", (data) => {
+      setChatHistory((prevChat) => [...prevChat, data]);
+    });
 
-    return () => clearTimeout(loadTimer);
+    return () => {
+      socket.off("message");
+    };
   }, []);
 
   useEffect(() => {
+    // Timer logic
     let interval;
     if (isTimerActive && timer > 0) {
       interval = setInterval(() => {
@@ -49,10 +38,39 @@ function MainView() {
       }, 1000);
     } else if (timer === 0) {
       setIsTimerActive(false);
-      setIsModalVisible(true);
+      setIsModalVisible(true); // Show the modal when timer ends
     }
+
     return () => clearInterval(interval);
   }, [isTimerActive, timer]);
+
+  const handleSetUsername = () => {
+    if (username.trim()) {
+      socket.emit("setUsername", username); // Send username to server
+      setIsUsernameSet(true);
+      setIsTimerActive(true); // Start the timer when username is set
+    }
+  };
+
+  const handleInputChange = (event) => {
+    setMessage(event.target.value);
+  };
+
+  const handleSendMessage = () => {
+    if (message.trim()) {
+      socket.emit("message", { user: username, message }); // Wysłanie obiektu zamiast stringa
+      setMessage("");
+    }
+  };
+
+  const handleVote = (selectedVote) => {
+    setVote(selectedVote);
+    console.log(`User voted: ${selectedVote}`);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60)
@@ -61,31 +79,34 @@ function MainView() {
     const seconds = (time % 60).toString().padStart(2, "0");
     return `${minutes}:${seconds}`;
   };
-  const closeModal = () => {
-    setIsModalVisible(false);
-  }
-  if(isLoading) {
-    return(
-        <div className="loader">
-          <img src= "/Spinner.svg" alt ="Loading spinner" className="spinner"/>
-          <div className="loader-text">Searching for your partner...</div>
-        </div>
+
+  if (!isUsernameSet) {
+    return (
+      <div className="username-setup">
+        <h2>Set your username</h2>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter your username"
+        />
+        <button onClick={handleSetUsername}>Set Username</button>
+      </div>
     );
   }
-
 
   return (
     <div className="backgroud">
       {isModalVisible && (
-          <Modal
-              title="Time's Up!"
-              message="Who do you think you were chatting with?"
-              closeModal={closeModal}
-              onVote={handleVote}
-          />
+        <Modal
+          title="Time's Up!"
+          message="Who do you think you were chatting with?"
+          closeModal={closeModal}
+          onVote={handleVote}
+        />
       )}
       <div className="container-for-header-timer">
-        <div className="header-text">Welcome to the Chat!</div>
+        <div className="header-text">Welcome, {username}!</div>
         <div className="timer">{formatTime(timer)}</div>
       </div>
       <div className="chat-container">
