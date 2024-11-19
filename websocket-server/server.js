@@ -34,22 +34,29 @@ io.on("connection", (socket) => {
 
   socket.on("requestRoom", () => {
     let assignedRoom = null;
-    for (const room of rooms) {
-      if (roomOccupancy[room] < 2) {
-        assignedRoom = room;
-        roomOccupancy[room]++;
-        socket.join(room);
-        socket.emit("roomAssigned", room);
-        console.log(`User ${socket.id} assigned to room ${room}`);
-        break;
-      }
-    }
-
-    if (!assignedRoom) {
+  
+    // Kopiowanie listy dostępnych pokojów, aby zapobiec przypadkowym parom
+    let shuffledRooms = [...rooms].filter((room) => roomOccupancy[room] < 2);
+  
+    if (shuffledRooms.length > 0) {
+      // Mieszanie listy pokojów
+      shuffledRooms = shuffledRooms.sort(() => Math.random() - 0.5);
+  
+      // Wybierz pierwszy dostępny pokój po wymieszaniu
+      assignedRoom = shuffledRooms[0];
+  
+      // Zwiększ zajętość pokoju i przypisz użytkownika
+      roomOccupancy[assignedRoom]++;
+      socket.join(assignedRoom);
+      socket.emit("roomAssigned", assignedRoom);
+      console.log(`User ${socket.id} assigned to room ${assignedRoom}`);
+    } else {
+      // Jeśli brak dostępnych pokojów
       socket.emit("roomFull");
       console.log(`No available rooms for user ${socket.id}`);
     }
   });
+  
 
   socket.on("setUsername", (username) => {
     socket.username = username;
