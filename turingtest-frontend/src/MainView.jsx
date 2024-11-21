@@ -13,7 +13,7 @@ function MainView() {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [isUsernameSet, setIsUsernameSet] = useState(false);
-  const [timer, setTimer] = useState(2115);
+  const [timer, setTimer] = useState(120);
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [vote, setVote] = useState(null);
