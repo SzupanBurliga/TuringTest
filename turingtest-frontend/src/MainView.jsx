@@ -13,19 +13,31 @@ function MainView() {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [isUsernameSet, setIsUsernameSet] = useState(false);
-  const [timer, setTimer] = useState(128);
-  const [isTimerActive, setIsTimerActive] = useState(true);
+  const [timer, setTimer] = useState(120);
+  const [isTimerActive, setIsTimerActive] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [vote, setVote] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [room, setRoom] = useState(null);
+
 
   useEffect(() => {
     socket.on("message", (data) => {
       setChatHistory((prevChat) => [...prevChat, data]);
     });
 
+    socket.on("roomAssigned", (assignedRoom) => {
+      setRoom(assignedRoom);
+    });
+
+    socket.on("roomFull", () => {
+      alert("All rooms are full. Please try again later.");
+    });
+
     return () => {
       socket.off("message");
+      socket.off("roomAssigned");
+      socket.off("roomFull");
     };
   }, []);
 
@@ -46,6 +58,7 @@ function MainView() {
   const handleSetUsername = () => {
     if (username.trim()) {
       socket.emit("setUsername", username);
+      socket.emit("requestRoom");
       setIsUsernameSet(true);
       setIsLoading(true);
       setTimeout(() => {
@@ -61,7 +74,8 @@ function MainView() {
 
   const handleSendMessage = () => {
     if (message.trim()) {
-      socket.emit("message", { user: username, message });
+      const data = { user: username, message, room };
+      socket.emit("message", data);
       setMessage("");
     }
   };

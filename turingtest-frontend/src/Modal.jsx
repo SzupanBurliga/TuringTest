@@ -1,11 +1,14 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import "./Modal.css";
 
 const Modal = ({ title, message, closeModal, onVote }) => {
+    const navigate = useNavigate();
     const handleVote = (vote) => {
         console.log("User voted: ", vote);
         onVote(vote);
         closeModal();
+        navigate("/");
     };
 
     return (
