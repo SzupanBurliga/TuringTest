@@ -20,7 +20,6 @@ function MainView() {
   const [isLoading, setIsLoading] = useState(false);
   const [room, setRoom] = useState(null);
 
-
   useEffect(() => {
     socket.on("message", (data) => {
       setChatHistory((prevChat) => [...prevChat, data]);
