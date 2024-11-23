@@ -8,7 +8,7 @@ const Modal = ({ title, message, closeModal, onVote }) => {
         console.log("User voted: ", vote);
         onVote(vote);
         closeModal();
-        navigate("/");
+        navigate("/TitlePage");
     };
 
     return (

@@ -6,38 +6,34 @@ function TuringTest() {
   const navigate = useNavigate();
   return (
 
-    <div className="MainTuring">
+      <div className="MainTuring">
 
-      <h1>About Turing Test</h1>
-      <h3>
-        The Turing Test is a concept introduced by British mathematician and
-        computer scientist Alan Turing in 1950 as a way to assess a machine's
-        ability to exhibit intelligent behavior indistinguishable from that of a
-        human.{" "}
-      </h3>
-      <h2>How it works?</h2>
-      <img src="/fota.jpg" alt="Fota" />
-      <h3>
-        The test is conducted in the form of a conversation: a human judge
-        engages in a text-based exchange with both a machine (often an AI) and
-        another human, without knowing which is which. If the judge cannot
-        reliably tell the difference between the human and the machine based
-        solely on their responses, the machine is said to have "passed" the
-        Turing Test.
-      </h3>
+          <h1>O Teście Turinga</h1>
+          <h3>
+              Test Turinga to koncepcja wprowadzona przez brytyjskiego matematyka i
+              informatyka Alana Turinga w 1950 roku, mająca na celu ocenę zdolności maszyny
+              do wykazywania inteligentnego zachowania, które nie różni się od zachowania człowieka.
+          </h3>
+          <h2>Jak to działa?</h2>
+          <img src="/fota.jpg" alt="Zdjęcie" />
+          <h3>
+              Test przeprowadzany jest w formie rozmowy: sędzia (człowiek) angażuje się w wymianę tekstową zarówno z maszyną
+              (zwykle sztuczną inteligencją), jak i z innym człowiekiem, nie wiedząc, kto jest kim.
+              Jeśli sędzia nie jest w stanie wiarygodnie odróżnić człowieka od maszyny wyłącznie na podstawie ich odpowiedzi,
+              uważa się, że maszyna "zdała" test Turinga.
+          </h3>
 
-      <h3>
-        The Turing Test has become a foundational idea in the field of
-        artificial intelligence (AI), representing one of the first formal
-        attempts to explore machine intelligence. The test is not about
-        measuring intelligence directly but rather assessing the machine's
-        ability to mimic human-like responses convincingly. While some AI
-        systems today can perform well on limited conversational tasks, the
-        Turing Test remains a high bar, especially in terms of achieving
-        nuanced, contextually appropriate responses across diverse topics.
-      </h3>
-        <button onClick={() => navigate("/")}>Go back</button>
-    </div>
+          <h3>
+              Test Turinga stał się podstawową ideą w dziedzinie sztucznej inteligencji (AI),
+              reprezentując jedną z pierwszych formalnych prób zbadania inteligencji maszyn.
+              Test nie polega na bezpośrednim mierzeniu inteligencji, lecz na ocenie zdolności maszyny
+              do przekonującego naśladowania ludzkich odpowiedzi. Chociaż niektóre systemy AI
+              dziś radzą sobie dobrze w ograniczonych zadaniach konwersacyjnych, Test Turinga pozostaje
+              wysokim wyzwaniem, szczególnie pod względem osiągnięcia subtelnych, kontekstowo odpowiednich
+              odpowiedzi na różnorodne tematy.
+          </h3>
+          <button onClick={() => navigate("/TitlePage")}>Wróć</button>
+      </div>
   );
 }
 export default TuringTest;
