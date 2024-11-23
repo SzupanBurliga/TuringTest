@@ -36,7 +36,7 @@ function TuringTest() {
         Turing Test remains a high bar, especially in terms of achieving
         nuanced, contextually appropriate responses across diverse topics.
       </h3>
-        <button onClick={() => navigate("/")}>Go back</button>
+        <button onClick={() => navigate("/TitlePage")}>Go back</button>
     </div>
   );
 }
