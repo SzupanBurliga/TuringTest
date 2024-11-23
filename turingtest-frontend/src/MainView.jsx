@@ -136,7 +136,7 @@ function MainView() {
         <div className="timer">{formatTime(timer)}</div>
       </div>
       <div className="chat-container">
-        <ChatWindow chatHistory={chatHistory} />
+        <ChatWindow chatHistory={chatHistory} username={username} />
         <div className="input-area">
           <div>
             <UserInput
