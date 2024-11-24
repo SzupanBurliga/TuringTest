@@ -69,6 +69,16 @@ io.on("connection", (socket) => {
     console.log(`User ${socket.username} connected with ID: ${socket.id}`);
   });
 
+    socket.on("message", (data) => {
+      console.log(`Message from ${socket.id} in room ${data.room}:`, data.message);
+      io.to(data.room).emit("message", { user: data.user, message: data.message });
+  
+    if (!data.timerStarted) {
+      io.to(data.room).emit("startTimer");
+      data.timerStarted = true;
+    }
+  });
+
   const chat = {};
   const randomNicknames = [
     "bambi_lover",
@@ -207,4 +217,4 @@ io.on("connection", (socket) => {
 
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-});
+  });
