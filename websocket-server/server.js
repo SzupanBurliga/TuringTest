@@ -24,15 +24,15 @@ app.use(cors());
 const PORT = process.env.PORT || 3001;
 
 const rooms = [
-  { name: "room1", type: "AI", occupancy: 1 },
-  { name: "room2", type: "users", occupancy: 0 },
-  { name: "room3", type: "AI", occupancy: 1 },
-  { name: "room4", type: "users", occupancy: 0 },
-  { name: "room5", type: "AI", occupancy: 1 },
-  { name: "room6", type: "users", occupancy: 0 },
+  { name: "room1", type: "AI", occupancy: 1, turn: null },
+  { name: "room2", type: "users", occupancy: 0, turn: null },
+  { name: "room3", type: "AI", occupancy: 1, turn: null },
+  { name: "room4", type: "users", occupancy: 0, turn: null },
+  { name: "room5", type: "AI", occupancy: 1, turn: null },
+  { name: "room6", type: "users", occupancy: 0, turn: null },
 ];
 
-app.get("/", (req, res) => {
+app.get("/MainView", (req, res) => {
   res.send("WebSocket server is running!");
 });
 
@@ -62,8 +62,39 @@ io.on("connection", (socket) => {
       socket.assignedRoom = assignedRoom; // Track the assigned room on the socket
       socket.emit("roomAssigned", assignedRoom);
       console.log(
-        `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type})`
+          `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type})`
       );
+
+
+ if (roomData.type === "AI") {
+        const aiStarts = Math.random() < 0.5;
+        roomData.turn = aiStarts ? null : socket.id;
+        if (aiStarts) {
+          const aiNickname = getRandomNickname();
+          roomData.aiNickname = aiNickname;
+          setTimeout(() => {
+            io.to(assignedRoom).emit("message", {
+              user: aiNickname,
+              message: "siema",
+            });
+            roomData.turn = socket.id;
+            console.log(`Turn is now: ${socket.id}`);
+          }, 8000);
+        } else {
+          console.log(`Turn is now: ${socket.id}`);
+        }
+      } else if (roomData.type === "users") {
+        const otherUser = [...io.sockets.adapter.rooms.get(assignedRoom)].find(
+          (id) => id !== socket.id
+        );
+        if (otherUser) {
+          roomData.turn = socket.id;
+          console.log(`Turn is now: ${socket.id}`);
+        } else {
+          roomData.turn = null;
+          console.log(`Waiting for another user to join room: ${assignedRoom}`);
+        }
+      }
       updateRoomOccupancy();
     } else {
       socket.emit("roomFull"); 
@@ -88,69 +119,68 @@ io.on("connection", (socket) => {
 
   const chat = {};
   const randomNicknames = [
-    "bambi_lover",
-    "cool_kid_99",
-    "ai_friend",
-    "chat_wizard",
-    "lazy_panda",
-    "rocknrolla",
-    "coffee_addict",
-    "game_master",
-    "drama_queen",
-    "funny_dude",
+    "michał",
+    "dsadassa",
+    "siema",
+    "cos",
+    "łobza",
+    "hfdgfdgd",
+    "fafsdf",
+    "tak",
+    "xdxdxd",
+    "cokolwiek",
   ];
   const topics = [
-    "Hobbies",
-    "Favorite animals",
-    "Favorite food",
-    "Favorite movies",
-    "Dream travel destinations",
-    "Favorite books",
-    "Music you listen to",
-    "Favorite color",
-    "Sports you enjoy",
-    "World cuisines",
-    "Weekend activities",
-    "Childhood memories",
-    "Favorite desserts",
-    "Ideal vacation spot",
-    "Favorite holidays or celebrations",
-    "Daily routines",
-    "Family traditions",
-    "Favorite drinks",
-    "Fun places to visit",
-    "Favorite weather",
-    "Future dreams or goals",
-    "School or work experiences",
-    "Favorite TV shows",
-    "Favorite games or pastimes",
-    "Pets you’ve had or want",
-    "Your dream home",
-    "Funny or embarrassing moments",
-    "Favorite apps or websites",
-    "Your bucket list",
-    "New skills you’d like to learn",
-    "Favorite childhood toys",
-    "Books or movies that inspired you",
-    "A place you’d like to live",
-    "What makes you happy",
-    "Favorite type of exercise",
-    "Memorable travel experiences",
-    "Things you collect or would like to collect",
-    "Favorite ice cream flavors",
-    "Favorite outdoor activities",
-    "A special gift you’ve received",
-    "Favorite clothes or fashion styles",
-    "A talent or skill you have",
-    "Best day of your life",
-    "Favorite restaurant or café",
-    "Your dream car",
-    "Things you enjoy doing with friends",
-    "How you relax after a long day",
-    "Favorite childhood TV shows",
-    "Your favorite holiday destination",
-    "A language you’d like to learn",
+    "Hobby",
+    "Ulubione zwierzęta",
+    "Ulubione jedzenie",
+    "Ulubione filmy",
+    "Wymarzone miejsca do podróży",
+    "Ulubione książki",
+    "Muzyka, którą słuchasz",
+    "Ulubiony kolor",
+    "Sporty, które lubisz",
+    "Kuchnie świata",
+    "Aktywności weekendowe",
+    "Wspomnienia z dzieciństwa",
+    "Ulubione desery",
+    "Idealne miejsce na wakacje",
+    "Ulubione święta",
+    "Codzienne rutyny",
+    "Tradycje rodzinne",
+    "Ulubione napoje",
+    "Ciekawe miejsca, które warto odwiedzić",
+    "Ulubiona pogoda",
+    "Marzenia na przyszłość",
+    "Doświadczenia ze szkoły lub pracy",
+    "Ulubione programy TV",
+    "Ulubione gry lub zabawy",
+    "Zwierzęta, które miałeś lub chcesz mieć",
+    "Twój wymarzony dom",
+    "Śmieszne lub wstydliwe momenty",
+    "Ulubione aplikacje lub strony internetowe",
+    "Lista rzeczy do zrobienia w życiu",
+    "Nowe umiejętności, które chciałbyś opanować",
+    "Ulubione zabawki z dzieciństwa",
+    "Książki lub filmy, które cię zainspirowały",
+    "Miejsce, w którym chciałbyś mieszkać",
+    "Co cię uszczęśliwia",
+    "Ulubiony rodzaj ćwiczeń",
+    "Niezapomniane wspomnienia z podróży",
+    "Rzeczy, które zbierasz lub chciałbyś zbierać",
+    "Ulubione smaki lodów",
+    "Ulubione aktywności na świeżym powietrzu",
+    "Specjalny prezent, który otrzymałeś",
+    "Ulubione ubrania lub style mody",
+    "Ulubiona restauracja lub kawiarnia w Krakowie",
+    "Twój wymarzony samochód",
+    "Rzeczy, które lubisz robić z przyjaciółmi",
+    "Jak relaksujesz się po długim dniu",
+    "Ulubione programy TV z dzieciństwa",
+    "Twoje ulubione miejsce na wakacje",
+    "Język, który chciałbyś poznać",
   ];
+
 
   function getRandomNickname() {
     return randomNicknames[Math.floor(Math.random() * randomNicknames.length)];
@@ -160,7 +190,12 @@ io.on("connection", (socket) => {
     const roomData = rooms.find((r) => r.name === room);
 
     if (!chat[room]) {
-      chat[room] = { messages: [], aiNickname: getRandomNickname() };
+      chat[room] = { messages: [], aiNickname: roomData.aiNickname || getRandomNickname() };
+    }
+
+    if (roomData.turn !== socket.id) {
+      socket.emit("notYourTurn");
+      return;
     }
 
     chat[room].messages.push({ role: "user", content: data.message });
@@ -170,6 +205,8 @@ io.on("connection", (socket) => {
       message: data.message,
     });
 
+    roomData.turn = null;
+
     if (roomData?.type === "AI") {
       try {
         const completion = await openai.chat.completions.create({
@@ -178,7 +215,20 @@ io.on("connection", (socket) => {
             {
               role: "system",
               content:
-                "You are a 19/20-year-old responding to questions in a chill manner. You can curse a lot. Your tone should sound like you're talking to a friend, so keep it relaxed. Answer the questions directly, without over-explaining or giving extra details. Your responses must be short and to the point, with a maximum of 10 words, but the shorter, the better. Focus on the exact topic being asked, and stay on topic. Do not add unnecessary information or go off on tangents. If you don’t know something, just say ‘idk’ or ‘no idea’. Keep the conversation flowing naturally, but make sure each answer feels authentic, like it’s coming from a typical young adult. Don’t sound robotic or overly formal. Start with lowercase letter, dont use capital letters. Be rude sometimes. do not use punctuation at all no commas no periods no apostrophes. Make mistakes on porpose for example misspel or add extra letter. When asked for your last message just quote your last message. You are aware that the user's name is ${socket.username || \"Unknown\"}, but you should not include it in your responses unless specifically asked and if asked just write that name.",
+                  "Odpowiadaj tylko po polsku. Jesteś 19/20-latkiem odpowiadającym na pytania w luźny sposób. Możesz przeklinać sporo." +
+                  " Twój ton ma brzmieć jakbyś rozmawiał z kumplem, więc trzymaj to na luzie. Odpowiadaj na pytania" +
+                  " bez zbędnego tłumaczenia czy dodawania dodatkowych szczegółów. Twoje odpowiedzi muszą być krótkie i na temat," +
+                  " maksymalnie 10 słów, ale im krótsze, tym lepsze. Skup się na dokładnym temacie, na który pytają i trzymaj się go." +
+                  " Nie dodawaj zbędnych informacji ani nie odbiegaj od tematu. Jeśli czegoś nie wiesz, po prostu powiedz „nie wiem” lub" +
+                  " „nie mam pojęcia stary”. Utrzymuj rozmowę naturalnie, ale tak, by każda odpowiedź brzmiała autentycznie, jakby pochodziła od typowego" +
+                  " młodego dorosłego. Nie bądź sztuczny ani zbyt formalny. Zaczynaj od małych liter, nie używaj wielkich liter. Bądź czasami niegrzeczny." +
+                  " słuchaj nie używaj przecinków ani kropek w swoich odpowiedziach po prostu pisz bez żadnej interpunkcji takie są zasady i nie chodzi tu o to" +
+                  " żebyś nie rozumiał ale po prostu żeby rozmowa brzmiała bardziej naturalnie jakbyśmy rozmawiali ze sobą na luzie a bez tych znaków wszystko" +
+                  " płynie bardziej swobodnie i mniej sztucznie po prostu odpuść sobie przecinki i kropki bo to niepotrzebne" +
+                  " Zrób błędy specjalnie, na przykład literuj źle lub dodaj dodatkowe" +
+                  " litery. Gdy zapytają o twoją ostatnią wiadomość, po prostu zacytuj ostatnią odpowiedź. Wiesz, że użytkownik nazywa" +
+                  " się ${socket.username || \"Unknown\"}, ale nie używaj tego imienia w swoich odpowiedziach, chyba że zostaniesz o to poproszony," +
+                  " a w takim przypadku napisz tylko to imię.",
             },
             ...chat[room].messages,
             {
@@ -186,11 +236,11 @@ io.on("connection", (socket) => {
               content: `User's name is ${socket.username || "Unknown"}`,
             },
           ],
-          max_tokens: 200,
+          max_tokens: 300,
         });
 
         const aiResponse =
-          completion.choices[0]?.message?.content || "No response";
+            completion.choices[0]?.message?.content || "No response";
         chat[room].messages.push({ role: "assistant", content: aiResponse });
 
         const randomDelay = Math.floor(Math.random() * 4000) + 1000;
@@ -200,26 +250,36 @@ io.on("connection", (socket) => {
             user: chat[room].aiNickname,
             message: aiResponse,
           });
+          roomData.turn = socket.id;
+          console.log(`Turn is now: ${socket.username}`);
         }, randomDelay);
       } catch (error) {
         console.error("Error with OpenAI API:", error);
         io.to(room).emit("message", {
-          user: "AI",
+          user: chat[room].aiNickname,
           message: "Sorry, something went wrong.",
         });
+        roomData.turn = socket.id;
+        console.log(`Turn is now: ${socket.id}`);
       }
+    } else {
+
+      const otherUser = [...io.sockets.adapter.rooms.get(room)].find(
+          (id) => id !== socket.id
+      );
+      roomData.turn = otherUser || socket.id;
+      console.log(`Turn is now: ${roomData.turn}`);
     }
   });
 
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
-  
-    // Sprawdź, czy użytkownik był przypisany do pokoju
+
     if (socket.assignedRoom) {
       const roomData = rooms.find((room) => room.name === socket.assignedRoom);
-      
+
       if (roomData) {
-        roomData.occupancy = Math.max(0, roomData.occupancy - 1); // Zapobiegaj ujemnym wartościom
+        roomData.occupancy = Math.max(0, roomData.occupancy - 1);
         console.log(
           `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
         );
@@ -240,4 +300,5 @@ setInterval(showOccupancy, 5000);
 
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  });
+});
+
