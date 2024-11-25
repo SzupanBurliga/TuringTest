@@ -17,8 +17,8 @@ const Modal = ({ title, message, closeModal, onVote }) => {
                 <h2>{title}</h2>
                 <p>{message}</p>
                 <div className="modal-buttons">
-                    <button onClick={() => handleVote("AI Bot")} className="buttonAI" >AI Bot</button>
-                    <button onClick={() => handleVote("Human")} className="buttonHuman">Human</button>
+                    <button onClick={() => handleVote("AI Bot")} className="buttonAI" >AI</button>
+                    <button onClick={() => handleVote("Human")} className="buttonHuman">Człowiek</button>
                 </div>
             </div>
         </div>
