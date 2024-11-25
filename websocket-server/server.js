@@ -52,31 +52,40 @@ io.on("connection", (socket) => {
       assignedRoom = shuffledRooms[0].name;
       const roomData = rooms.find((r) => r.name === assignedRoom);
       roomData.occupancy++;
-      const aiStarts = Math.random() < 0.5;
-      roomData.turn = aiStarts ? null : socket.id;
       socket.join(assignedRoom);
       socket.emit("roomAssigned", assignedRoom);
       console.log(
           `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type})`
       );
 
-      if (aiStarts && roomData.type === "AI") {
-        const aiNickname = getRandomNickname();
-        roomData.aiNickname = aiNickname;
-        setTimeout(() => {
-          io.to(assignedRoom).emit("message", {
-            user: aiNickname,
-            message: "siema",
-          });
-          roomData.turn = socket.id;
+      if (roomData.type === "AI") {
+        const aiStarts = Math.random() < 0.5;
+        roomData.turn = aiStarts ? null : socket.id;
+        if (aiStarts) {
+          const aiNickname = getRandomNickname();
+          roomData.aiNickname = aiNickname;
+          setTimeout(() => {
+            io.to(assignedRoom).emit("message", {
+              user: aiNickname,
+              message: "siema",
+            });
+            roomData.turn = socket.id;
+            console.log(`Turn is now: ${socket.id}`);
+          }, 8000);
+        } else {
           console.log(`Turn is now: ${socket.id}`);
-        }, 8000);
-      } else if (!aiStarts && roomData.type === "users") {
+        }
+      } else if (roomData.type === "users") {
         const otherUser = [...io.sockets.adapter.rooms.get(assignedRoom)].find(
             (id) => id !== socket.id
         );
-        roomData.turn = otherUser || socket.id;
-        console.log(`Turn is now: ${roomData.turn}`);
+        if (otherUser) {
+          roomData.turn = socket.id;
+          console.log(`Turn is now: ${socket.id}`);
+        } else {
+          roomData.turn = null;
+          console.log(`Waiting for another user to join room: ${assignedRoom}`);
+        }
       }
     } else {
       socket.emit("roomFull");
@@ -222,6 +231,7 @@ io.on("connection", (socket) => {
         console.log(`Turn is now: ${socket.id}`);
       }
     } else {
+
       const otherUser = [...io.sockets.adapter.rooms.get(room)].find(
           (id) => id !== socket.id
       );
