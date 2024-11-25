@@ -66,6 +66,7 @@ function MainView() {
   };
 
   const handleSendMessage = () => {
+    console.log("handleSendMessage called");
     if (message.trim() && room) {
       const data = { user: username, message, room, timerStarted: false };
       socket.emit("message", data);

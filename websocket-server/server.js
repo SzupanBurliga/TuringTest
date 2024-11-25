@@ -59,7 +59,7 @@ io.on("connection", (socket) => {
       const roomData = rooms.find((r) => r.name === assignedRoom);
       roomData.occupancy++;
       socket.join(assignedRoom);
-      socket.assignedRoom = assignedRoom; // Track the assigned room on the socket
+      socket.assignedRoom = assignedRoom; 
       socket.emit("roomAssigned", assignedRoom);
       console.log(
         `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type})`
@@ -74,16 +74,6 @@ io.on("connection", (socket) => {
   socket.on("setUsername", (username) => {
     socket.username = username;
     console.log(`User ${socket.username} connected with ID: ${socket.id}`);
-  });
-
-    socket.on("message", (data) => {
-      console.log(`Message from ${socket.id} in room ${data.room}:`, data.message);
-      io.to(data.room).emit("message", { user: data.user, message: data.message });
-  
-    if (!data.timerStarted) {
-      io.to(data.room).emit("startTimer");
-      data.timerStarted = true;
-    }
   });
 
   const chat = {};
@@ -159,6 +149,11 @@ io.on("connection", (socket) => {
     const room = data.room;
     const roomData = rooms.find((r) => r.name === room);
 
+    if (!data.timerStarted) {
+      io.to(data.room).emit("startTimer");
+      data.timerStarted = true;
+    }
+
     if (!chat[room]) {
       chat[room] = { messages: [], aiNickname: getRandomNickname() };
     }
@@ -214,12 +209,11 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
   
-    // Sprawdź, czy użytkownik był przypisany do pokoju
     if (socket.assignedRoom) {
       const roomData = rooms.find((room) => room.name === socket.assignedRoom);
-      
+
       if (roomData) {
-        roomData.occupancy = Math.max(0, roomData.occupancy - 1); // Zapobiegaj ujemnym wartościom
+        roomData.occupancy = Math.max(0, roomData.occupancy - 1); 
         console.log(
           `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
         );
