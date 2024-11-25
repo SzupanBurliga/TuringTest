@@ -33,10 +33,15 @@ function MainView() {
       alert("All rooms are full. Please try again later.");
     });
 
+    socket.on("notYourTurn", () => {
+      alert("Nie twoja kolej");
+    });
+
     return () => {
       socket.off("message");
       socket.off("roomAssigned");
       socket.off("roomFull");
+      socket.off("notYourTurn");
     };
   }, []);
 
