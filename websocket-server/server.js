@@ -42,27 +42,20 @@ io.on("connection", (socket) => {
   socket.on("requestRoom", () => {
     let assignedRoom = null;
 
-    const isAI = Math.random() < 0.5;
-  const availableRooms = rooms.filter(
-    (room) => room.type === (isAI ? "AI" : "users") && room.occupancy < 2
-  );
+    const availableRooms = rooms.filter((room) => room.occupancy < 2);
 
-  if (availableRooms.length > 0) {
-    const shuffledRooms = availableRooms.sort(() => Math.random() - 0.5);
-    const roomData = rooms.find((r) => r.name === shuffledRooms[0].name);
-
-    if (roomData.occupancy < 2) { // Ponowne sprawdzenie przed aktualizacją
-      roomData.occupancy++;
-      assignedRoom = roomData.name;
-      socket.join(assignedRoom);
-      socket.emit("roomAssigned", assignedRoom);
+    if (availableRooms.length > 0) {
+      const randomRoom = availableRooms[Math.floor(Math.random() * availableRooms.length)]; 
+      randomRoom.occupancy++; 
+      assignedRoom = randomRoom.name; 
+      socket.join(assignedRoom); 
+      socket.emit("roomAssigned", assignedRoom); 
       console.log(
-        `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type})`
+        `User ${socket.id} assigned to room ${assignedRoom} (${randomRoom.type})`
       );
-    }
-  } else {
-    socket.emit("roomFull");
-    console.log(`No available rooms for user ${socket.id}`);
+    } else {
+      socket.emit("roomFull"); 
+      console.log(`No available rooms for user ${socket.id}`);
     }
   });
 
@@ -206,25 +199,19 @@ io.on("connection", (socket) => {
     }
   });
 
-    socket.on("disconnect", () => {
-      console.log("User disconnected:", socket.id);
-    
-      // Identify the room the user was in and decrease occupancy
-      const userRooms = Array.from(socket.rooms).filter((roomName) =>
-        rooms.some((r) => r.name === roomName)
-      );
-    
-      if (userRooms.length > 0) {
-        const userRoom = userRooms[0];
-        const roomData = rooms.find((room) => room.name === userRoom);
-    
-        if (roomData) {
-          roomData.occupancy = Math.max(0, roomData.occupancy - 1); // Prevent negative occupancy
-          console.log(
-            `User ${socket.id} left room ${userRoom}. New occupancy: ${roomData.occupancy}`
-          );
-        }
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+  
+    // Sprawdź, czy użytkownik był przypisany do pokoju
+    if (socket.assignedRoom) {
+      const roomData = rooms.find((room) => room.name === socket.assignedRoom);
+      if (roomData) {
+        roomData.occupancy = Math.max(0, roomData.occupancy - 1); // Zapobiegaj ujemnym wartościom
+        console.log(
+          `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
+        );
       }
+    }
   });
 });
 
