@@ -6,7 +6,7 @@ function UserInput({ message, handleInputChange }) {
       type="text"
       value={message}
       onChange={handleInputChange}
-      placeholder="Type a message"
+      placeholder="Napisz wiadomość"
     />
   );
 }

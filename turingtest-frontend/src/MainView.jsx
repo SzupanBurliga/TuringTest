@@ -104,14 +104,14 @@ function MainView() {
   if (!isUsernameSet) {
     return (
       <div className="username-setup">
-        <h2>Set your username</h2>
+        <h2>Ustaw swoją nazwę</h2>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="Enter your username"
+          placeholder="Wprowadź swoją nazwe"
         />
-        <button onClick={handleSetUsername}>Set Username</button>
+        <button onClick={handleSetUsername}>Ustaw nazwę</button>
       </div>
     );
   }
@@ -120,40 +120,40 @@ function MainView() {
     return (
       <div className="loader">
         <div className="spinner"></div>
-        <div className="loader-text">Loading...</div>
+        <div className="loader-text">Ładowanie...</div>
       </div>
     );
   }
 
   return (
-    <div className="backgroud">
-      {isModalVisible && (
-        <Modal
-          title="Time's Up!"
-          message="Who do you think you were chatting with?"
-          closeModal={closeModal}
-          onVote={handleVote}
-        />
-      )}
-      <div className="container-for-header-timer">
-        <div className="header-text">Welcome, {username}!</div>
-        <div className="timer">{formatTime(timer)}</div>
-      </div>
-      <div className="chat-container">
-        <ChatWindow chatHistory={chatHistory} username={username} />
-        <div className="input-area">
-          <div>
-            <UserInput
-              message={message}
-              handleInputChange={handleInputChange}
+      <div className="backgroud">
+        {isModalVisible && (
+            <Modal
+                title="Czas minął!"
+                message="Z kim myślisz, że rozmawiałeś?"
+                closeModal={closeModal}
+                onVote={handleVote}
             />
-          </div>
-          <div>
-            <SendButton handleSendMessage={handleSendMessage} />
+        )}
+        <div className="container-for-header-timer">
+          <div className="header-text">Witaj, {username}!</div>
+          <div className="timer">{formatTime(timer)}</div>
+        </div>
+        <div className="chat-container">
+          <ChatWindow chatHistory={chatHistory} username={username} />
+          <div className="input-area">
+            <div>
+              <UserInput
+                  message={message}
+                  handleInputChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <SendButton handleSendMessage={handleSendMessage} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
