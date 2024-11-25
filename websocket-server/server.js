@@ -36,6 +36,14 @@ app.get("/", (req, res) => {
   res.send("WebSocket server is running!");
 });
 
+const updateRoomOccupancy = () => {
+  const roomOccupancy = rooms.map((room) => ({
+    name: room.name,
+    occupancy: room.occupancy,
+  }));
+  io.emit("roomOccupancy", roomOccupancy);
+};
+
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
@@ -45,14 +53,18 @@ io.on("connection", (socket) => {
     const availableRooms = rooms.filter((room) => room.occupancy < 2);
 
     if (availableRooms.length > 0) {
-      const randomRoom = availableRooms[Math.floor(Math.random() * availableRooms.length)]; 
-      randomRoom.occupancy++; 
-      assignedRoom = randomRoom.name; 
-      socket.join(assignedRoom); 
-      socket.emit("roomAssigned", assignedRoom); 
+      const shuffledRooms = availableRooms.sort(() => Math.random() - 0.5);
+
+      assignedRoom = shuffledRooms[0].name;
+      const roomData = rooms.find((r) => r.name === assignedRoom);
+      roomData.occupancy++;
+      socket.join(assignedRoom);
+      socket.assignedRoom = assignedRoom; // Track the assigned room on the socket
+      socket.emit("roomAssigned", assignedRoom);
       console.log(
-        `User ${socket.id} assigned to room ${assignedRoom} (${randomRoom.type})`
+        `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type})`
       );
+      updateRoomOccupancy();
     } else {
       socket.emit("roomFull"); 
       console.log(`No available rooms for user ${socket.id}`);
@@ -205,11 +217,13 @@ io.on("connection", (socket) => {
     // Sprawdź, czy użytkownik był przypisany do pokoju
     if (socket.assignedRoom) {
       const roomData = rooms.find((room) => room.name === socket.assignedRoom);
+      
       if (roomData) {
         roomData.occupancy = Math.max(0, roomData.occupancy - 1); // Zapobiegaj ujemnym wartościom
         console.log(
           `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
         );
+        updateRoomOccupancy();
       }
     }
   });
