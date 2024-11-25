@@ -13,12 +13,12 @@ function MainView() {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [isUsernameSet, setIsUsernameSet] = useState(false);
+  const [room, setRoom] = useState(null);
   const [timer, setTimer] = useState(120);
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [vote, setVote] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [room, setRoom] = useState(null);
 
   useEffect(() => {
     socket.on("message", (data) => {
@@ -27,10 +27,16 @@ function MainView() {
 
     socket.on("roomAssigned", (assignedRoom) => {
       setRoom(assignedRoom);
+      setIsLoading(false);
     });
 
     socket.on("roomFull", () => {
       alert("All rooms are full. Please try again later.");
+      setIsLoading(false);
+    });
+
+    socket.on("startTimer", () => {
+      setIsTimerActive(true);
     });
 
     socket.on("notYourTurn", () => {
@@ -42,6 +48,7 @@ function MainView() {
       socket.off("roomAssigned");
       socket.off("roomFull");
       socket.off("notYourTurn");
+      socket.off("startTimer");
     };
   }, []);
 
@@ -59,38 +66,25 @@ function MainView() {
     return () => clearInterval(interval);
   }, [isTimerActive, timer]);
 
+  const handleInputChange = (event) => {
+    setMessage(event.target.value);
+  };
+
+  const handleSendMessage = () => {
+    if (message.trim() && room) {
+      const data = { user: username, message, room, timerStarted: false };
+      socket.emit("message", data);
+      setMessage("");
+    }
+  };
+
   const handleSetUsername = () => {
     if (username.trim()) {
       socket.emit("setUsername", username);
       socket.emit("requestRoom");
       setIsUsernameSet(true);
       setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, Math.random() * (3000 - 2000) + 4000);
-      setIsTimerActive(true);
     }
-  };
-
-  const handleInputChange = (event) => {
-    setMessage(event.target.value);
-  };
-
-  const handleSendMessage = () => {
-    if (message.trim()) {
-      const data = { user: username, message, room };
-      socket.emit("message", data);
-      setMessage("");
-    }
-  };
-
-  const handleVote = (selectedVote) => {
-    setVote(selectedVote);
-    console.log(`User voted: ${selectedVote}`);
-  };
-
-  const closeModal = () => {
-    setIsModalVisible(false);
   };
 
   const formatTime = (time) => {

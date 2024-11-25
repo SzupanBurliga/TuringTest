@@ -36,16 +36,22 @@ app.get("/MainView", (req, res) => {
   res.send("WebSocket server is running!");
 });
 
+const updateRoomOccupancy = () => {
+  const roomOccupancy = rooms.map((room) => ({
+    name: room.name,
+    occupancy: room.occupancy,
+  }));
+  io.emit("roomOccupancy", roomOccupancy);
+};
+
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
   socket.on("requestRoom", () => {
     let assignedRoom = null;
 
-    const isAI = Math.random() < 0.5;
-    const availableRooms = rooms.filter(
-        (room) => room.type === (isAI ? "AI" : "users") && room.occupancy < 2
-    );
+    const availableRooms = rooms.filter((room) => room.occupancy < 2);
+
     if (availableRooms.length > 0) {
       const shuffledRooms = availableRooms.sort(() => Math.random() - 0.5);
 
@@ -53,12 +59,14 @@ io.on("connection", (socket) => {
       const roomData = rooms.find((r) => r.name === assignedRoom);
       roomData.occupancy++;
       socket.join(assignedRoom);
+      socket.assignedRoom = assignedRoom; // Track the assigned room on the socket
       socket.emit("roomAssigned", assignedRoom);
       console.log(
           `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type})`
       );
 
-      if (roomData.type === "AI") {
+
+ if (roomData.type === "AI") {
         const aiStarts = Math.random() < 0.5;
         roomData.turn = aiStarts ? null : socket.id;
         if (aiStarts) {
@@ -77,7 +85,7 @@ io.on("connection", (socket) => {
         }
       } else if (roomData.type === "users") {
         const otherUser = [...io.sockets.adapter.rooms.get(assignedRoom)].find(
-            (id) => id !== socket.id
+          (id) => id !== socket.id
         );
         if (otherUser) {
           roomData.turn = socket.id;
@@ -87,8 +95,9 @@ io.on("connection", (socket) => {
           console.log(`Waiting for another user to join room: ${assignedRoom}`);
         }
       }
+      updateRoomOccupancy();
     } else {
-      socket.emit("roomFull");
+      socket.emit("roomFull"); 
       console.log(`No available rooms for user ${socket.id}`);
     }
   });
@@ -96,6 +105,16 @@ io.on("connection", (socket) => {
   socket.on("setUsername", (username) => {
     socket.username = username;
     console.log(`User ${socket.username} connected with ID: ${socket.id}`);
+  });
+
+    socket.on("message", (data) => {
+      console.log(`Message from ${socket.id} in room ${data.room}:`, data.message);
+      io.to(data.room).emit("message", { user: data.user, message: data.message });
+  
+    if (!data.timerStarted) {
+      io.to(data.room).emit("startTimer");
+      data.timerStarted = true;
+    }
   });
 
   const chat = {};
@@ -255,18 +274,31 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
-    for (const room of rooms) {
-      if (socket.rooms.has(room.name)) {
-        room.occupancy--;
-        if (room.turn === socket.id) {
-          room.turn = null;
-        }
-        break;
+
+    if (socket.assignedRoom) {
+      const roomData = rooms.find((room) => room.name === socket.assignedRoom);
+
+      if (roomData) {
+        roomData.occupancy = Math.max(0, roomData.occupancy - 1);
+        console.log(
+          `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
+        );
+        updateRoomOccupancy();
       }
     }
   });
 });
 
+function showOccupancy() {
+  console.log("Current Room Occupancy:");
+  rooms.forEach((room) => {
+    console.log(`Room: ${room.name}, Type: ${room.type}, Occupancy: ${room.occupancy}`);
+  });
+}
+
+setInterval(showOccupancy, 5000);
+
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
