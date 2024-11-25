@@ -43,24 +43,26 @@ io.on("connection", (socket) => {
     let assignedRoom = null;
 
     const isAI = Math.random() < 0.5;
-    const availableRooms = rooms.filter(
-      (room) => room.type === (isAI ? "AI" : "users") && room.occupancy < 2
-    );
+  const availableRooms = rooms.filter(
+    (room) => room.type === (isAI ? "AI" : "users") && room.occupancy < 2
+  );
 
-    if (availableRooms.length > 0) {
-      const shuffledRooms = availableRooms.sort(() => Math.random() - 0.5);
+  if (availableRooms.length > 0) {
+    const shuffledRooms = availableRooms.sort(() => Math.random() - 0.5);
+    const roomData = rooms.find((r) => r.name === shuffledRooms[0].name);
 
-      assignedRoom = shuffledRooms[0].name;
-      const roomData = rooms.find((r) => r.name === assignedRoom);
+    if (roomData.occupancy < 2) { // Ponowne sprawdzenie przed aktualizacją
       roomData.occupancy++;
+      assignedRoom = roomData.name;
       socket.join(assignedRoom);
       socket.emit("roomAssigned", assignedRoom);
       console.log(
         `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type})`
       );
-    } else {
-      socket.emit("roomFull");
-      console.log(`No available rooms for user ${socket.id}`);
+    }
+  } else {
+    socket.emit("roomFull");
+    console.log(`No available rooms for user ${socket.id}`);
     }
   });
 
@@ -204,16 +206,36 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("disconnect", () => {
-    console.log("User disconnected:", socket.id);
-    for (const room of rooms) {
-      if (socket.rooms.has(room.name)) {
-        room.occupancy--;
-        break;
+    socket.on("disconnect", () => {
+      console.log("User disconnected:", socket.id);
+    
+      // Identify the room the user was in and decrease occupancy
+      const userRooms = Array.from(socket.rooms).filter((roomName) =>
+        rooms.some((r) => r.name === roomName)
+      );
+    
+      if (userRooms.length > 0) {
+        const userRoom = userRooms[0];
+        const roomData = rooms.find((room) => room.name === userRoom);
+    
+        if (roomData) {
+          roomData.occupancy = Math.max(0, roomData.occupancy - 1); // Prevent negative occupancy
+          console.log(
+            `User ${socket.id} left room ${userRoom}. New occupancy: ${roomData.occupancy}`
+          );
+        }
       }
-    }
   });
 });
+
+function showOccupancy() {
+  console.log("Current Room Occupancy:");
+  rooms.forEach((room) => {
+    console.log(`Room: ${room.name}, Type: ${room.type}, Occupancy: ${room.occupancy}`);
+  });
+}
+
+setInterval(showOccupancy, 5000);
 
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
