@@ -14,7 +14,7 @@ function MainView() {
   const [chatHistory, setChatHistory] = useState([]);
   const [isUsernameSet, setIsUsernameSet] = useState(false);
   const [room, setRoom] = useState(null);
-  const [timer, setTimer] = useState(120);
+  const [timer, setTimer] = useState(30);
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [vote, setVote] = useState(null);
@@ -30,6 +30,7 @@ function MainView() {
       setRoom(assignedRoom);
       setTopic(randomTopic);
       setIsLoading(false);
+      console.log(assignedRoom);
     });
 
     socket.on("roomFull", () => {
@@ -80,9 +81,9 @@ function MainView() {
     }
   };
 
-  const handleVote = (selectedVote) => {
-    setVote(selectedVote);
-    console.log(`User voted: ${selectedVote}`);
+  const handleVote = (voteData) => {
+    setVote(voteData);
+    console.log(`User voted: ${voteData.vote}, Correct: ${voteData.isCorrect}`);
   };
 
   const closeModal = () => {
@@ -105,66 +106,67 @@ function MainView() {
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60)
-        .toString()
-        .padStart(2, "0");
+      .toString()
+      .padStart(2, "0");
     const seconds = (time % 60).toString().padStart(2, "0");
     return `${minutes}:${seconds}`;
   };
 
   if (!isUsernameSet) {
     return (
-        <div className="username-setup">
-          <h2>Ustaw swoją nazwę</h2>
-          <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Wprowadź swoją nazwe"
-          />
-          <button onClick={handleSetUsername}>Ustaw nazwę</button>
-        </div>
+      <div className="username-setup">
+        <h2>Ustaw swoją nazwę</h2>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Wprowadź swoją nazwe"
+        />
+        <button onClick={handleSetUsername}>Ustaw nazwę</button>
+      </div>
     );
   }
 
   if (isLoading) {
     return (
-        <div className="loader">
-          <div className="spinner"></div>
-          <div className="loader-text">Ładowanie...</div>
-        </div>
+      <div className="loader">
+        <div className="spinner"></div>
+        <div className="loader-text">Ładowanie...</div>
+      </div>
     );
   }
 
   return (
-      <div className="background">
-        {isModalVisible && (
-            <Modal
-                title="Czas minął!"
-                message="Z kim myślisz, że rozmawiałeś?"
-                closeModal={closeModal}
-                onVote={handleVote}
+    <div className="background">
+      {isModalVisible && (
+        <Modal
+          title="Czas minął!"
+          message="Z kim myślisz, że rozmawiałeś?"
+          closeModal={closeModal}
+          onVote={handleVote}
+          room={room}
+        />
+      )}
+      <div className="container-for-header-timer">
+        <div className="header-text">Witaj, {username}!</div>
+        <div className="chat-topic">Temat rozmowy: {topic}</div>
+        <div className="timer">{formatTime(timer)}</div>
+      </div>
+      <div className="chat-container">
+        <ChatWindow chatHistory={chatHistory} username={username} />
+        <div className="input-area">
+          <div>
+            <UserInput
+              message={message}
+              handleInputChange={handleInputChange}
             />
-        )}
-        <div className="container-for-header-timer">
-          <div className="header-text">Witaj, {username}!</div>
-          <div className="chat-topic">Temat rozmowy: {topic}</div>
-          <div className="timer">{formatTime(timer)}</div>
-        </div>
-        <div className="chat-container">
-          <ChatWindow chatHistory={chatHistory} username={username} />
-          <div className="input-area">
-            <div>
-              <UserInput
-                  message={message}
-                  handleInputChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <SendButton handleSendMessage={handleSendMessage} />
-            </div>
+          </div>
+          <div>
+            <SendButton handleSendMessage={handleSendMessage} />
           </div>
         </div>
       </div>
+    </div>
   );
 }
 
