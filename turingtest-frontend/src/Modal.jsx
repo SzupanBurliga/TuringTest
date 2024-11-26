@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Modal.css";
 
-const Modal = ({ title, message, closeModal, onVote, room }) => {
+const Modal = ({ title, message, closeModal, onVote, room, chatHistory }) => {
   const navigate = useNavigate();
   const [showResult, setShowResult] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
 
-  const handleVote = (vote) => {
+  const handleVote = async (vote) => {
     const isCorrect =
       (["room1", "room3", "room5"].includes(room) && vote === "AI Bot") ||
       (["room2", "room4", "room6"].includes(room) && vote === "Human");
@@ -15,7 +15,29 @@ const Modal = ({ title, message, closeModal, onVote, room }) => {
     setIsCorrect(isCorrect);
     setShowResult(true);
 
-    // Opóźniamy zamknięcie modalu i nawigację, aby użytkownik mógł zobaczyć wynik
+    // Wysyłamy wynik do backendu
+    try {
+      await fetch("http://localhost:3001/api/results", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          timestamp: new Date().toISOString(),
+          room: room,
+          vote: vote,
+          isCorrect: isCorrect,
+          actualType: ["room1", "room3", "room5"].includes(room)
+            ? "AI Bot"
+            : "Human",
+          username: localStorage.getItem("username"),
+          chatHistory: chatHistory,
+        }),
+      });
+    } catch (error) {
+      console.error("Error saving results:", error);
+    }
+
     setTimeout(() => {
       onVote({ vote, isCorrect });
       closeModal();
