@@ -49,21 +49,21 @@ io.on("connection", (socket) => {
 
   socket.on("requestRoom", () => {
     let assignedRoom = null;
-
     const availableRooms = rooms.filter((room) => room.occupancy < 2);
 
     if (availableRooms.length > 0) {
       const shuffledRooms = availableRooms.sort(() => Math.random() - 0.5);
-
       assignedRoom = shuffledRooms[0].name;
       const roomData = rooms.find((r) => r.name === assignedRoom);
       roomData.occupancy++;
       socket.join(assignedRoom);
-      socket.assignedRoom = assignedRoom; 
-      socket.emit("roomAssigned", assignedRoom);
-      console.log(
-          `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type})`
-      );
+
+      const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+      roomData.randomTopic = randomTopic;
+
+      socket.assignedRoom = assignedRoom;
+      socket.emit("roomAssigned", { assignedRoom, randomTopic });
+      console.log(`User ${socket.id} assigned to room ${assignedRoom} (${roomData.type} topic: ${randomTopic})`);
 
 
  if (roomData.type === "AI") {
@@ -72,14 +72,17 @@ io.on("connection", (socket) => {
         if (aiStarts) {
           const aiNickname = getRandomNickname();
           roomData.aiNickname = aiNickname;
+          const randomDelay = Math.floor(Math.random() * 2000) + 3000;
           setTimeout(() => {
             io.to(assignedRoom).emit("message", {
               user: aiNickname,
               message: "siema",
             });
+
             roomData.turn = socket.id;
             console.log(`Turn is now: ${socket.id}`);
-          }, 8000);
+            io.to(assignedRoom).emit("startTimer");
+          }, randomDelay);
         } else {
           console.log(`Turn is now: ${socket.id}`);
         }
@@ -223,12 +226,14 @@ io.on("connection", (socket) => {
                   " Zrób błędy specjalnie, na przykład literuj źle lub dodaj dodatkowe" +
                   " litery. Gdy zapytają o twoją ostatnią wiadomość, po prostu zacytuj ostatnią odpowiedź. Wiesz, że użytkownik nazywa" +
                   " się ${socket.username || \"Unknown\"}, ale nie używaj tego imienia w swoich odpowiedziach, chyba że zostaniesz o to poproszony," +
-                  " a w takim przypadku napisz tylko to imię.",
+                  " a w takim przypadku napisz tylko to imię. Temat rozmowy to: ${roomData.randomTopic}. Zadawaj pytania na ten temat.",
             },
             ...chat[room].messages,
             {
               role: "system",
-              content: `User's name is ${socket.username || "Unknown"}`,
+              content: `User's name is ${socket.username || "Unknown"}. Temat rozmowy to: ${roomData.randomTopic}.Niech to będzie nasz temat, więc zadawaj pytania, " +
+          "aby utrzymać rozmowę na tym temacie i angażuj się w nią. Używaj tego tematu w odpowiedziach i pytaniach. Rozmawiaj z użytkownikiem w sposób, który sprawi, że" +
+          " będą chcieli rozmawiać z tobą dłużej. Pamiętaj, że jesteś 19/20-latkiem, więc zachowuj się jak taki.`,
             },
           ],
           max_tokens: 300,

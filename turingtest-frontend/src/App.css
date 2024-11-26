@@ -56,7 +56,7 @@ body,
   margin-bottom: 2vh;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 8vh 2vh;
-  border-radius: vh;
+  border-radius: 0vh;
   text-align: center;
 }
 .username-setup {
@@ -74,7 +74,7 @@ body,
 
 .container-for-header-timer {
   display: flex;
-  width: 75vw;
+  width: 75vh;
   align-items: center;
   justify-content: space-between;
 }
@@ -161,7 +161,7 @@ body,
   border-radius: 5vh;
   background-color: #85b446;
   color: white;
-  width: flex;
+  width: 100%;
   max-width: 40%;
   word-wrap: break-word;
   white-space: normal;
@@ -217,7 +217,8 @@ button:hover {
 .chat-message {
   padding: 10px;
   border-radius: 8px;
-  max-width: 70%;
+  width: auto;
+  max-width: 45%;
   font-size: 14px;
   word-wrap: break-word;
 }
