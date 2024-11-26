@@ -182,10 +182,16 @@ io.on("connection", (socket) => {
     const room = data.room;
     const roomData = rooms.find((r) => r.name === room);
 
-    if (!data.timerStarted) {
-      io.to(data.room).emit("startTimer");
-      data.timerStarted = true;
+    if (!roomData) {
+      socket.emit("error", "Room not found");
+      return;
     }
+
+    if (roomData.occupancy === 2 && !roomData.timer) {
+      startRoomTimer(room);
+      io.to(room).emit("startTimer");
+      console.log(`Timer started for room: ${room}`);
+      }
 
     if (!chat[room]) {
       chat[room] = { messages: [], aiNickname: roomData.aiNickname || getRandomNickname() };
@@ -282,6 +288,12 @@ io.on("connection", (socket) => {
 
         roomData.occupancy = Math.max(0, roomData.occupancy - 1); 
 
+        if (roomData.occupancy === 0 && roomData.timer) {
+          clearInterval(roomData.timer);
+          roomData.timer = null;
+          console.log(`Timer stopped for room: ${socket.assignedRoom}`);
+        }  
+
         console.log(
           `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
         );
@@ -296,6 +308,27 @@ function showOccupancy() {
   rooms.forEach((room) => {
     console.log(`Room: ${room.name}, Type: ${room.type}, Occupancy: ${room.occupancy}`);
   });
+}
+
+function startRoomTimer(roomName) {
+  const room = rooms.find((r) => r.name === roomName);
+  if (!room) return;
+
+  let remainingTime = 120;
+
+  if (room.timer) clearInterval(room.timer); 
+
+  room.timer = setInterval(() => {
+    if (remainingTime > 0) {
+      remainingTime--;
+      io.to(roomName).emit("timerUpdate", remainingTime);
+    } else {
+      clearInterval(room.timer);
+      room.timer = null;
+      io.to(roomName).emit("timerEnd");
+      console.log(`Timer ended for room: ${roomName}`);
+    }
+  }, 1000);
 }
 
 setInterval(showOccupancy, 5000);
