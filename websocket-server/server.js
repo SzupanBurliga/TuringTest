@@ -4,6 +4,7 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 app.use(cors());
@@ -34,6 +35,12 @@ const io = new Server(server, {
 });
 
 const PORT = process.env.PORT || 3001;
+
+app.use(express.static(path.join(__dirname, "../turingtest-frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../turingtest-frontend/dist", "index.html"));
+});
 
 const rooms = [
   { name: "room1", type: "AI", occupancy: 1, turn: null },
