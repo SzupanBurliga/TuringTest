@@ -5,6 +5,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 app.use(cors());
@@ -12,9 +13,32 @@ app.use(express.json());
 let results = [];
 
 app.post("/api/results", (req, res) => {
-  const result = req.body;
-  results.push(result);
-  res.status(201).json({ message: "Result saved successfully" });
+  try {
+    const result = req.body;
+    results.push(result);
+
+    // Tworzenie tekstu wyniku
+    const resultText = `=== Wynik testu Turinga ===
+Data: ${new Date().toLocaleString()}
+Typ rozmowy: ${result.actualType}
+Głos użytkownika: ${result.vote}
+Wynik: ${result.isCorrect ? "Poprawny" : "Niepoprawny"}
+
+Historia rozmowy:
+${result.chatHistory.map((msg) => `${msg.user}: ${msg.message}`).join("\n")}
+
+=====================================\n\n`;
+
+    // Zapisywanie do pliku
+    fs.appendFileSync(path.join(__dirname, "results.txt"), resultText, {
+      encoding: "utf8",
+    });
+
+    res.status(201).json({ message: "Result saved successfully" });
+  } catch (error) {
+    console.error("Error saving result:", error);
+    res.status(500).json({ error: "Failed to save result" });
+  }
 });
 
 app.get("/api/results", (req, res) => {
@@ -39,7 +63,9 @@ const PORT = process.env.PORT || 3001;
 app.use(express.static(path.join(__dirname, "../turingtest-frontend/dist")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../turingtest-frontend/dist", "index.html"));
+  res.sendFile(
+    path.join(__dirname, "../turingtest-frontend/dist", "index.html")
+  );
 });
 
 const rooms = [

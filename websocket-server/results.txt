@@ -1,0 +1,41 @@
+=== Wynik testu Turinga ===
+Data: 2.12.2024, 22:47:11
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+123123: seimsdas
+michał: no co tam robisz rano jak wstajesz
+123123: a spie jeszcze aty ?
+michał: no spoko ale co robisz po obudzeniu się
+123123: dziwne
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 2.12.2024, 22:48:49
+Typ rozmowy: Human
+Głos użytkownika: Human
+Wynik: Poprawny
+
+Historia rozmowy:
+
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 2.12.2024, 22:50:48
+Typ rozmowy: AI Bot
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+tak: siema
+312312: cześć
+tak: hej co tam u ciebie
+312312: deszczowa jak moge siezdzieć w domu a twoja ?
+tak: no to spoko ja lubię jak jest chłodno a ty jaką masz ulubioną pogodę
+
+=====================================
+
