@@ -15,25 +15,30 @@ const Modal = ({ title, message, closeModal, onVote, room, chatHistory }) => {
     setIsCorrect(isCorrect);
     setShowResult(true);
 
-    // Wysyłamy wynik do backendu
+    const resultData = {
+      timestamp: new Date().toISOString(),
+      room: room,
+      vote: vote,
+      isCorrect: isCorrect,
+      actualType: ["room1", "room3", "room5"].includes(room)
+        ? "AI Bot"
+        : "Human",
+      username: localStorage.getItem("username"),
+      chatHistory: chatHistory || [],
+    };
+
     try {
-      await fetch("http://localhost:3001/api/results", {
+      const response = await fetch("http://localhost:3001/api/results", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          timestamp: new Date().toISOString(),
-          room: room,
-          vote: vote,
-          isCorrect: isCorrect,
-          actualType: ["room1", "room3", "room5"].includes(room)
-            ? "AI Bot"
-            : "Human",
-          username: localStorage.getItem("username"),
-          chatHistory: chatHistory,
-        }),
+        body: JSON.stringify(resultData),
       });
+
+      if (!response.ok) {
+        throw new Error("Failed to save results");
+      }
     } catch (error) {
       console.error("Error saving results:", error);
     }

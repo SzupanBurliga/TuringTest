@@ -61,12 +61,13 @@ body,
 }
 .username-setup {
   display: flex;
+  flex-direction: column;
   align-items: center;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  padding: 1vh;
+  transform: translate(-50%, -50%);
+  padding: 2vh;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 1vh;
   max-width: 70vw;
@@ -233,5 +234,23 @@ button:hover {
   align-self: flex-start;
   background-color: rgb(87, 87, 87);
   color: #ffffff;
+}
 
+.recording-notice {
+  color: #ff9494;
+  font-size: 0.9rem;
+  margin-top: 1vh;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.user-button {
+  padding: 1.5vh 2vh;
+  background-color: #85b446;
+  color: white;
+  border: none;
+  border-radius: 0.5vh;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-top: 1vh;
 }

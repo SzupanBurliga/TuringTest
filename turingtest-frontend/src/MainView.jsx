@@ -122,7 +122,10 @@ function MainView() {
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Wprowadź swoją nazwe"
         />
-        <button onClick={handleSetUsername}>Ustaw nazwę</button>
+        <button className="user-button" onClick={handleSetUsername}>
+          Ustaw nazwę
+        </button>
+        <span className="recording-notice">* Rozmowy są rejestrowane</span>
       </div>
     );
   }
@@ -145,6 +148,7 @@ function MainView() {
           closeModal={closeModal}
           onVote={handleVote}
           room={room}
+          chatHistory={chatHistory}
         />
       )}
       <div className="container-for-header-timer">

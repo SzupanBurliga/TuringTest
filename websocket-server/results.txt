@@ -39,3 +39,28 @@ tak: no to spoko ja lubię jak jest chłodno a ty jaką masz ulubioną pogodę
 
 =====================================
 
+=== Wynik testu Turinga ===
+Data: 2.12.2024, 23:05:02
+Typ rozmowy: Human
+Głos użytkownika: Human
+Wynik: Poprawny
+
+Historia rozmowy:
+
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 2.12.2024, 23:07:35
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+dasda: adasd
+michał: nie mam pojęcia stary
+dasda: dasdas
+michał: masz jakieś śmieszne historie z dzieciństwa?
+
+=====================================
+
