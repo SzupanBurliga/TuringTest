@@ -64,3 +64,50 @@ michał: masz jakieś śmieszne historie z dzieciństwa?
 
 =====================================
 
+=== Wynik testu Turinga ===
+Data: 4.12.2024, 22:23:20
+Typ rozmowy: Human
+Głos użytkownika: AI Bot
+Wynik: Niepoprawny
+
+Historia rozmowy:
+
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 4.12.2024, 22:23:24
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+dsada: chuj ci w dupe
+fafsdf: lol co ty chcesz odemnie xd
+dsada: spierdalaj
+fafsdf: ale wiesz co nie mam zamiaru się stąd nigdzie ruszać ale mówiąc o muzyce to co ostatnio słuchałeś poza tym jak mnie wyzywasz xd
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 4.12.2024, 23:11:28
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 4.12.2024, 23:23:55
+Typ rozmowy: Human
+Głos użytkownika: AI Bot
+Wynik: Niepoprawny
+
+Historia rozmowy:
+
+
+=====================================
+

@@ -1,10 +1,13 @@
+// MainView.jsx
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import "./App.css";
 import ChatWindow from "./ChatWindow";
 import UserInput from "./UserInput";
 import SendButton from "./SendButton";
 import Modal from "./Modal";
+import Loader from "./Loader";
 
 const socket = io("http://localhost:3001");
 
@@ -20,6 +23,7 @@ function MainView() {
   const [vote, setVote] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [topic, setTopic] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     socket.on("message", (data) => {
@@ -96,81 +100,68 @@ function MainView() {
       socket.emit("requestRoom");
       setIsUsernameSet(true);
       setIsLoading(true);
-      const randomDelay = Math.floor(Math.random() * 2000) + 3000;
-      setTimeout(() => {
-        setIsLoading(false);
-      }, randomDelay);
-      setIsTimerActive(true);
+      navigate("/Loader");
     }
   };
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60)
-      .toString()
-      .padStart(2, "0");
+        .toString()
+        .padStart(2, "0");
     const seconds = (time % 60).toString().padStart(2, "0");
     return `${minutes}:${seconds}`;
   };
 
   if (!isUsernameSet) {
     return (
-      <div className="username-setup">
-        <h2>Ustaw swoją nazwę</h2>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Wprowadź swoją nazwe"
-        />
-        <button className="user-button" onClick={handleSetUsername}>
-          Ustaw nazwę
-        </button>
-        <span className="recording-notice">* Rozmowy są rejestrowane</span>
-      </div>
-    );
-  }
-
-  if (isLoading) {
-    return (
-      <div className="loader">
-        <div className="spinner"></div>
-        <div className="loader-text">Ładowanie...</div>
-      </div>
+        <div className="username-setup">
+          <h2>Ustaw swoją nazwę</h2>
+          <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Wprowadź swoją nazwe"
+          />
+          <button className="user-button" onClick={handleSetUsername}>
+            Ustaw nazwę
+          </button>
+          <span className="recording-notice">* Rozmowy są rejestrowane</span>
+        </div>
     );
   }
 
   return (
-    <div className="background">
-      {isModalVisible && (
-        <Modal
-          title="Czas minął!"
-          message="Z kim myślisz, że rozmawiałeś?"
-          closeModal={closeModal}
-          onVote={handleVote}
-          room={room}
-          chatHistory={chatHistory}
-        />
-      )}
-      <div className="container-for-header-timer">
-        <div className="header-text">Witaj, {username}!</div>
-        <div className="chat-topic">Temat rozmowy: {topic}</div>
-        <div className="timer">{formatTime(timer)}</div>
-      </div>
-      <div className="chat-container">
-        <ChatWindow chatHistory={chatHistory} username={username} />
-        <div className="input-area">
-          <div>
-            <UserInput
-              message={message}
-              handleInputChange={handleInputChange}
+      <div className="background">
+        {isModalVisible && (
+            <Modal
+                title="Czas minął!"
+                message="Z kim myślisz, że rozmawiałeś?"
+                closeModal={closeModal}
+                onVote={handleVote}
+                room={room}
+                chatHistory={chatHistory}
             />
-          </div>
-          <div>
-            <SendButton handleSendMessage={handleSendMessage} />
+        )}
+        <div className="container-for-header-timer">
+          <div className="header-text">Witaj, {username}!</div>
+          <div className="chat-topic">Temat rozmowy: {topic}</div>
+          <div className="timer">{formatTime(timer)}</div>
+        </div>
+        <div className="chat-container">
+          <ChatWindow chatHistory={chatHistory} username={username} />
+          <div className="input-area">
+            <div>
+              <UserInput
+                  message={message}
+                  handleInputChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <SendButton handleSendMessage={handleSendMessage} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

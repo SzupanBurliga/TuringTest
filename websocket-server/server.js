@@ -160,6 +160,13 @@ io.on("connection", (socket) => {
   const randomNicknames = [
     "michał",
     "dsadassa",
+    "kuba",
+    "kochambambi",
+    "12344",
+    "coscoscos",
+    "sigma",
+    "skibidi",
+    "zabsontoziomal",
     "siema",
     "cos",
     "łobza",
