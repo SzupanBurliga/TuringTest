@@ -111,3 +111,55 @@ Historia rozmowy:
 
 =====================================
 
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 09:41:24
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+michał: siema
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 09:42:48
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+hfdgfdgd: siema
+dsa: siema
+hfdgfdgd: siema, jaki jest twój ulubiony rodzaj ćwiczeń
+dsa: siady ze sztangą a twoje?
+hfdgfdgd: no fajnie ja lubię pompki co ci dają siady ze sztangą
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 09:47:08
+Typ rozmowy: AI Bot
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 09:52:45
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+tak: siema
+dsadsa: siema
+tak: siema co czytałeś ostatnio
+dsadsa: taryfikator mandatów dla konfidentów
+tak: no to co ci się podobało w tej książce
+
+=====================================
+

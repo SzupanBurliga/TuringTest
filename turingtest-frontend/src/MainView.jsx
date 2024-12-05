@@ -1,13 +1,10 @@
-// MainView.jsx
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import "./App.css";
 import ChatWindow from "./ChatWindow";
 import UserInput from "./UserInput";
 import SendButton from "./SendButton";
 import Modal from "./Modal";
-import Loader from "./Loader";
 
 const socket = io("http://localhost:3001");
 
@@ -23,7 +20,6 @@ function MainView() {
   const [vote, setVote] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [topic, setTopic] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     socket.on("message", (data) => {
@@ -100,7 +96,11 @@ function MainView() {
       socket.emit("requestRoom");
       setIsUsernameSet(true);
       setIsLoading(true);
-      navigate("/Loader");
+      const randomDelay = Math.floor(Math.random() * 2000) + 3000;
+      setTimeout(() => {
+        setIsLoading(false);
+      }, randomDelay);
+      setIsTimerActive(true);
     }
   };
 
@@ -126,6 +126,15 @@ function MainView() {
             Ustaw nazwę
           </button>
           <span className="recording-notice">* Rozmowy są rejestrowane</span>
+        </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+        <div className="loader">
+          <div className="spinner"></div>
+          <div className="loader-text">Ładowanie...</div>
         </div>
     );
   }
