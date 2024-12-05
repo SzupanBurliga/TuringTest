@@ -13,7 +13,7 @@ function TitlePage() {
           inny człowiek, czy bot AI.
         </h3>
         <h3>Myślisz, że potrafisz to odróżnić?</h3>
-        <button onClick={() => navigate("/MainView")}>Przejdź do czatu</button>
+        <button onClick={() => navigate("/Loader")}>Przejdź do czatu</button>
         <button onClick={() => navigate("/TuringTest")}>
           O Teście Turinga
         </button>

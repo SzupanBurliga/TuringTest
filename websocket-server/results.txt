@@ -64,3 +64,143 @@ michał: masz jakieś śmieszne historie z dzieciństwa?
 
 =====================================
 
+=== Wynik testu Turinga ===
+Data: 4.12.2024, 22:23:20
+Typ rozmowy: Human
+Głos użytkownika: AI Bot
+Wynik: Niepoprawny
+
+Historia rozmowy:
+
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 4.12.2024, 22:23:24
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+dsada: chuj ci w dupe
+fafsdf: lol co ty chcesz odemnie xd
+dsada: spierdalaj
+fafsdf: ale wiesz co nie mam zamiaru się stąd nigdzie ruszać ale mówiąc o muzyce to co ostatnio słuchałeś poza tym jak mnie wyzywasz xd
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 4.12.2024, 23:11:28
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 4.12.2024, 23:23:55
+Typ rozmowy: Human
+Głos użytkownika: AI Bot
+Wynik: Niepoprawny
+
+Historia rozmowy:
+
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 09:41:24
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+michał: siema
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 09:42:48
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+hfdgfdgd: siema
+dsa: siema
+hfdgfdgd: siema, jaki jest twój ulubiony rodzaj ćwiczeń
+dsa: siady ze sztangą a twoje?
+hfdgfdgd: no fajnie ja lubię pompki co ci dają siady ze sztangą
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 09:47:08
+Typ rozmowy: AI Bot
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 09:52:45
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+tak: siema
+dsadsa: siema
+tak: siema co czytałeś ostatnio
+dsadsa: taryfikator mandatów dla konfidentów
+tak: no to co ci się podobało w tej książce
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 10:04:33
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+koko: szalom
+hfdgfdgd: hej cześć, koko co tam u ciebie słychać?
+koko: co
+hfdgfdgd: co tam koko, jakie masz ulubione żarcie?
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 10:46:51
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+cokolwiek: siema
+dsa: czesc jakie masz ulubione zwierze
+cokolwiek: no hej moje ulubione to psy a twoje co
+dsa: koty
+cokolwiek: koty są spoko ale czy masz jakieś zwierze w domu
+dsa: nie mam żadnego niestety
+cokolwiek: no to jakie zwierze byś chciał mieć w przyszłości
+dsa: niedzwiedzia
+cokolwiek: no niedźwiedź to niezły wybór ale gdzie byś go trzymał
+dsa: w budzie
+cokolwiek: no to masz na myśli jakąś małą budę czy coś większego
+dsa: taką większa jak dla psa
+cokolwiek: no to masz na myśli jakąś małą budę czy coś większego
+dsa: czemu sie powtarzasz 
+cokolwiek: no bo niedźwiedź to spora bestyja a co do ulubionych zwierząt to jakieś inne masz na myśli czy tylko koty i niedźwiedzie
+dsa: a jakie lubisz auta
+cokolwiek: no auta to fajny temat ale wracając do zwierząt to jakie masz ulubione zwierzęta poza kotami i niedźwiedziami
+
+=====================================
+
