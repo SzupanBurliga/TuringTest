@@ -163,3 +163,17 @@ tak: no to co ci się podobało w tej książce
 
 =====================================
 
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 10:04:33
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+koko: szalom
+hfdgfdgd: hej cześć, koko co tam u ciebie słychać?
+koko: co
+hfdgfdgd: co tam koko, jakie masz ulubione żarcie?
+
+=====================================
+

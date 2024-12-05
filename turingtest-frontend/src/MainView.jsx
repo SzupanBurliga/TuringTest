@@ -14,7 +14,7 @@ function MainView() {
   const [chatHistory, setChatHistory] = useState([]);
   const [isUsernameSet, setIsUsernameSet] = useState(false);
   const [room, setRoom] = useState(null);
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(330);
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [vote, setVote] = useState(null);
@@ -120,7 +120,8 @@ function MainView() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Wprowadź swoją nazwe"
+              placeholder="Wprowadź swoją nazwę"
+              maxLength={20} // Set maximum length to 20 characters
           />
           <button className="user-button" onClick={handleSetUsername}>
             Ustaw nazwę

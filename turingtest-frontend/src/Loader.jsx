@@ -15,7 +15,7 @@ const Loader = ({ delay = 3000 }) => {
 
             if (currentHour === 10 && currentMinute === 0) {
                 navigate("/MainView");
-            } else if (currentHour > 10 || (currentHour === 10 && currentMinute > 0)) {
+            } else if (currentHour > 10 || (currentHour === 10 && currentMinute > 7)) {
                 setIsPastTime(true);
             }
         };
