@@ -13,9 +13,9 @@ const Loader = ({ delay = 3000 }) => {
             const currentHour = currentTime.getHours();
             const currentMinute = currentTime.getMinutes();
 
-            if (currentHour === 10 && currentMinute === 0) {
+            if (currentHour === 16 && currentMinute === 10) {
                 navigate("/MainView");
-            } else if (currentHour > 10 || (currentHour === 10 && currentMinute > 7)) {
+            } else if (currentHour > 16 || (currentHour === 16 && currentMinute > 10)) {
                 setIsPastTime(true);
             }
         };
@@ -27,8 +27,12 @@ const Loader = ({ delay = 3000 }) => {
 
     return (
         <div className="loader">
-            <div className="spinner"></div>
-            <div className="loader-text">Ładowanie...</div>
+            {!isPastTime && (
+                <>
+                    <div className="spinner"></div>
+                    <div className="loader-text">Ładowanie...</div>
+                </>
+            )}
             <div className="loader-text">
                 {isPastTime ? "Chat został otwarty o 10:00" : "Chat zostanie otwarty o 10:00"}
             </div>
