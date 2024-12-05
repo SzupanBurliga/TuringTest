@@ -177,3 +177,30 @@ hfdgfdgd: co tam koko, jakie masz ulubione żarcie?
 
 =====================================
 
+=== Wynik testu Turinga ===
+Data: 5.12.2024, 10:46:51
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+cokolwiek: siema
+dsa: czesc jakie masz ulubione zwierze
+cokolwiek: no hej moje ulubione to psy a twoje co
+dsa: koty
+cokolwiek: koty są spoko ale czy masz jakieś zwierze w domu
+dsa: nie mam żadnego niestety
+cokolwiek: no to jakie zwierze byś chciał mieć w przyszłości
+dsa: niedzwiedzia
+cokolwiek: no niedźwiedź to niezły wybór ale gdzie byś go trzymał
+dsa: w budzie
+cokolwiek: no to masz na myśli jakąś małą budę czy coś większego
+dsa: taką większa jak dla psa
+cokolwiek: no to masz na myśli jakąś małą budę czy coś większego
+dsa: czemu sie powtarzasz 
+cokolwiek: no bo niedźwiedź to spora bestyja a co do ulubionych zwierząt to jakieś inne masz na myśli czy tylko koty i niedźwiedzie
+dsa: a jakie lubisz auta
+cokolwiek: no auta to fajny temat ale wracając do zwierząt to jakie masz ulubione zwierzęta poza kotami i niedźwiedziami
+
+=====================================
+
