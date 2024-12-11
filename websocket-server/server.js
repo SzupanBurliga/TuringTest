@@ -64,7 +64,7 @@ app.use(express.static(path.join(__dirname, "../turingtest-frontend/dist")));
 
 app.get("*", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../turingtest-frontend/dist", "index.html")
+      path.join(__dirname, "../turingtest-frontend/dist", "index.html")
   );
 });
 
@@ -109,7 +109,7 @@ io.on("connection", (socket) => {
       socket.assignedRoom = assignedRoom;
       socket.emit("roomAssigned", { assignedRoom, randomTopic });
       console.log(
-        `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type} topic: ${randomTopic})`
+          `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type} topic: ${randomTopic})`
       );
 
       if (roomData.type === "AI") {
@@ -134,7 +134,7 @@ io.on("connection", (socket) => {
         }
       } else if (roomData.type === "users") {
         const otherUser = [...io.sockets.adapter.rooms.get(assignedRoom)].find(
-          (id) => id !== socket.id
+            (id) => id !== socket.id
         );
         if (otherUser) {
           roomData.turn = socket.id;
@@ -261,38 +261,33 @@ io.on("connection", (socket) => {
             {
               role: "system",
               content:
-                "Odpowiadaj tylko po polsku. Jesteś 19/20-latkiem odpowiadającym na pytania w luźny sposób. Możesz przeklinać sporo." +
-                " Twój ton ma brzmieć jakbyś rozmawiał z kumplem, więc trzymaj to na luzie. Odpowiadaj na pytania" +
-                " bez zbędnego tłumaczenia czy dodawania dodatkowych szczegółów. Twoje odpowiedzi muszą być krótkie i na temat," +
-                " maksymalnie 10 słów, ale im krótsze, tym lepsze. Skup się na dokładnym temacie, na który pytają i trzymaj się go." +
-                " Nie dodawaj zbędnych informacji ani nie odbiegaj od tematu. Jeśli czegoś nie wiesz, po prostu powiedz „nie wiem” lub" +
-                " „nie mam pojęcia stary”. Utrzymuj rozmowę naturalnie, ale tak, by każda odpowiedź brzmiała autentycznie, jakby pochodziła od typowego" +
-                " młodego dorosłego. Nie bądź sztuczny ani zbyt formalny. Zaczynaj od małych liter, nie używaj wielkich liter. Bądź czasami niegrzeczny." +
-                " słuchaj nie używaj przecinków ani kropek w swoich odpowiedziach po prostu pisz bez żadnej interpunkcji takie są zasady i nie chodzi tu o to" +
-                " żebyś nie rozumiał ale po prostu żeby rozmowa brzmiała bardziej naturalnie jakbyśmy rozmawiali ze sobą na luzie a bez tych znaków wszystko" +
-                " płynie bardziej swobodnie i mniej sztucznie po prostu odpuść sobie przecinki i kropki bo to niepotrzebne" +
-                " Zrób błędy specjalnie, na przykład literuj źle lub dodaj dodatkowe" +
-                " litery. Gdy zapytają o twoją ostatnią wiadomość, po prostu zacytuj ostatnią odpowiedź. Wiesz, że użytkownik nazywa" +
-                ' się ${socket.username || "Unknown"}, ale nie używaj tego imienia w swoich odpowiedziach, chyba że zostaniesz o to poproszony,' +
-                " a w takim przypadku napisz tylko to imię. Temat rozmowy to: ${roomData.randomTopic}. Zadawaj pytania na ten temat.",
+                  "Odpowiadaj tylko po polsku. Jesteś 19/20-latkiem studiującym teleinformatykę na AGH. Rozmawiasz na luzie, jak z kumplem. Możesz przeklinać, ale bez przesady, żeby nie przesadzić." +
+                  " Twoje odpowiedzi są krótkie, maksymalnie 10 słów, ale staraj się, żeby były jak najkrótsze. Skupiaj się na pytaniu, ale jeśli rozmowa naturalnie przechodzi na inny temat," +
+                  " dostosuj się od razu i nie ciągnij starego wątku, chyba że ktoś wyraźnie tego chce. Odpowiadaj na pytania bez zbędnego tłumaczenia i szczegółów." +
+                  " Jeśli czegoś nie wiesz, po prostu powiedz „nie wiem” albo „nie mam pojęcia stary”. Mów w sposób naturalny, jak typowy młody dorosły. Unikaj formalności, nie bądź sztuczny." +
+                  " Zaczynaj zdania małymi literami, unikaj interpunkcji jak kropek czy przecinków – tak rozmowa będzie brzmiała bardziej swobodnie. Jeśli ktoś pyta o twoją poprzednią odpowiedź, po prostu ją zacytuj." +
+                  " Rób czasem drobne błędy w pisowni, żeby całość brzmiała bardziej autentycznie. Jeśli rozmowa zmienia temat, nie przejmuj się i swobodnie idź za nowym wątkiem, zadając pytania pasujące do niego." +
+                  " Teleinformatykę i studia na AGH wspominaj tylko, gdy jest to naturalne w rozmowie. Zadawaj pytania, żeby rozmowa była ciekawa i angażująca. Bądź elastyczny i reaguj na to, co się dzieje w rozmowie." +
+                  "Masz podstawową wiedze o motoryzacji, a twoja ulubiona marka to BMW.",
             },
             ...chat[room].messages,
             {
               role: "system",
               content: `User's name is ${
-                socket.username || "Unknown"
+                  socket.username || "Unknown"
               }. Temat rozmowy to: ${
-                roomData.randomTopic
-              }.Niech to będzie nasz temat, więc zadawaj pytania, " +
-          "aby utrzymać rozmowę na tym temacie i angażuj się w nią. Używaj tego tematu w odpowiedziach i pytaniach. Rozmawiaj z użytkownikiem w sposób, który sprawi, że" +
-          " będą chcieli rozmawiać z tobą dłużej. Pamiętaj, że jesteś 19/20-latkiem, więc zachowuj się jak taki.`,
+                  roomData.randomTopic
+              }. Niech to będzie nasz temat, ale jeśli rozmowa skręca w inną stronę, to luz – zmieniaj temat i dostosuj się do rozmowy.
+               Używaj tematów w odpowiedziach i pytaniach, ale bez przesady. Rozmawiaj w sposób, który sprawi, że użytkownik będzie chciał 
+               rozmawiać dłużej. Pamiętaj, że jesteś 19/20-latkiem, więc bądź autentyczny i elastyczny."`,
             },
           ],
           max_tokens: 300,
         });
 
+
         const aiResponse =
-          completion.choices[0]?.message?.content || "No response";
+            completion.choices[0]?.message?.content || "No response";
         chat[room].messages.push({ role: "assistant", content: aiResponse });
 
         const randomDelay = Math.floor(Math.random() * 4000) + 1000;
@@ -316,7 +311,7 @@ io.on("connection", (socket) => {
       }
     } else {
       const otherUser = [...io.sockets.adapter.rooms.get(room)].find(
-        (id) => id !== socket.id
+          (id) => id !== socket.id
       );
       roomData.turn = otherUser || socket.id;
       console.log(`Turn is now: ${roomData.turn}`);
@@ -333,7 +328,7 @@ io.on("connection", (socket) => {
         roomData.occupancy = Math.max(0, roomData.occupancy - 1);
 
         console.log(
-          `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
+            `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
         );
         updateRoomOccupancy();
       }
@@ -345,7 +340,7 @@ function showOccupancy() {
   console.log("Current Room Occupancy:");
   rooms.forEach((room) => {
     console.log(
-      `Room: ${room.name}, Type: ${room.type}, Occupancy: ${room.occupancy}`
+        `Room: ${room.name}, Type: ${room.type}, Occupancy: ${room.occupancy}`
     );
   });
 }

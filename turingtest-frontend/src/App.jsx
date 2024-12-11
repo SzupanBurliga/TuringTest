@@ -5,6 +5,7 @@ import TitlePage from "./TitlePage";
 import TouringTest from "./TuringTest";
 import PassPage from "./PassPage";
 import Results from "./Results";
+import Loader from "./Loader";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/MainView" element={<MainView />} />
           <Route path="/TuringTest" element={<TouringTest />} />
           <Route path="/Results" element={<Results />} />
+          <Route path="/Loader" element={<Loader />} />
         </Routes>
       </div>
     </Router>
