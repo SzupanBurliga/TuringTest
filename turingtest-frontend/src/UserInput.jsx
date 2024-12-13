@@ -1,12 +1,13 @@
-import React from 'react';
+import React from "react";
 
-function UserInput({ message, handleInputChange }) {
+function UserInput({ message, handleInputChange, handleKeyPress }) {
   return (
     <input
       type="text"
       value={message}
       onChange={handleInputChange}
-      placeholder="Napisz wiadomość"
+      onKeyPress={handleKeyPress}
+      placeholder="Napisz wiadomość..."
     />
   );
 }
