@@ -13,9 +13,9 @@ const Loader = ({ delay = 3000 }) => {
             const currentHour = currentTime.getHours();
             const currentMinute = currentTime.getMinutes();
 
-            if (currentHour === 16 && currentMinute === 10) {
+            if (currentHour === 16 && currentMinute === 8) {
                 navigate("/MainView");
-            } else if (currentHour > 16 || (currentHour === 16 && currentMinute > 10)) {
+            } else if (currentHour > 16 || (currentHour === 16 && currentMinute > 8)) {
                 setIsPastTime(true);
             }
         };
