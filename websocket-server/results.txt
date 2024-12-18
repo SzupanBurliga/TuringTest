@@ -204,3 +204,97 @@ cokolwiek: no auta to fajny temat ale wracając do zwierząt to jakie masz ulubi
 
 =====================================
 
+=== Wynik testu Turinga ===
+Data: 12.12.2024, 17:01:53
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+cos: siema
+fdfdsf: siema ty kurwo
+cos: siema, nie pierdol, co czytasz ostatnio?
+fdfdsf: dziennik twojej starej
+cos: lol, a serio to co?
+fdfdsf: a mozemy zmienic temat?
+cos: jasne, co chcesz gadać?
+fdfdsf: o jedzeniu chce pogadac
+cos: co lubisz jeść?
+fdfdsf: kanapke a ty?
+cos: kanapki to git, ale co do czytania?
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 12.12.2024, 17:06:35
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+dsadsa: siema
+cos: siema, co tam u ciebie?
+dsadsa: git git, a co u ciebie
+cos: spoko, wszystko w normie. co robisz dzisiaj wieczorem?
+dsadsa: wale konia a ty?
+cos: no, to jest plan na wieczór. masz jakieś plany na weekend?
+dsadsa: najebać się
+cos: no to git, ale nie za bardzo, bo będzie wstyd. co jeszcze?
+dsadsa: a jakie ty masz plany na wieczór albo na weekend
+cos: no wiesz, na wieczór może impreza, a weekend to chill. a ty?
+dsadsa: a jakie lubisz piwo
+cos: no, ja to lubię taki zimny browar, np. żubr. a ty?
+dsadsa: harnas
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 12.12.2024, 17:11:01
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+fafsdf: siema
+dsawda: chuj
+fafsdf: no co?
+dsawda: a nic
+fafsdf: no to o czym?
+dsawda: hntjygnyjhmgb
+fafsdf: pojebalo cie?
+dsawda: no chyba ciebie, fiucie
+fafsdf: nie no, serio?
+dsawda: tak
+fafsdf: dsawda, co tam u ciebie?
+dsawda: a zajebałeś sobie kiedyś w nosa?
+fafsdf: nie no, to by bolało XD
+dsawda: to chyba czystego towaru nie brałeś ;) 
+fafsdf: no co ty, ale z ciebie wariat, dsawda XD
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 12.12.2024, 17:15:52
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+cokolwiek: siema
+wojtek: siemano
+cokolwiek: siema co tam słychać?
+wojtek: git git, a kim jestes stary
+cokolwiek: jestem wojtek a ty?
+wojtek: cokolwiek jestem
+cokolwiek: to co słychać u ciebie?
+wojtek: a jesteś cwelem jebanym?
+cokolwiek: tak jestem cwelem jebanym a ty co chuj?
+wojtek: no i git, a wpierdalasz makowca na komendzie?
+cokolwiek: nie wpierdalam makowca na komendzie a ty?
+wojtek: tak
+cokolwiek: no to masz jaja ja nie XD
+wojtek: pizda
+cokolwiek: no to masz jaja ja nie XD
+
+=====================================
+

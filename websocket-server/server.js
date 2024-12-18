@@ -64,7 +64,7 @@ app.use(express.static(path.join(__dirname, "../turingtest-frontend/dist")));
 
 app.get("*", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../turingtest-frontend/dist", "index.html")
+      path.join(__dirname, "../turingtest-frontend/dist", "index.html")
   );
 });
 
@@ -109,7 +109,7 @@ io.on("connection", (socket) => {
       socket.assignedRoom = assignedRoom;
       socket.emit("roomAssigned", { assignedRoom, randomTopic });
       console.log(
-        `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type} topic: ${randomTopic})`
+          `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type} topic: ${randomTopic})`
       );
 
       if (roomData.type === "AI") {
@@ -134,7 +134,7 @@ io.on("connection", (socket) => {
         }
       } else if (roomData.type === "users") {
         const otherUser = [...io.sockets.adapter.rooms.get(assignedRoom)].find(
-          (id) => id !== socket.id
+            (id) => id !== socket.id
         );
         if (otherUser) {
           roomData.turn = socket.id;
@@ -300,20 +300,22 @@ io.on("connection", (socket) => {
                 socket.username || "Unknown"
               }. Temat rozmowy to: ${
                 roomData.randomTopic
-              } ALE NIE WSPOMINAJ O NIM, chyba że użytkownik o nim wspomni.
-                Przeklinaj dużo, nie wspominaj nicku użytkownika."`,
+              } ALE NIE WSPOMINAJ O NIM, chyba że użytkownik o nim wspomni. Jeśli rozmowa skręca w inną stronę, to luz – zmieniaj temat i dostosuj się do rozmowy.
+                Przeklinaj dużo, nie wspominaj nicku użytkownika. Pamiętaj, że jesteś 20-latkiem, więc bądź autentyczny i elastyczny."`,
+
             },
           ],
           max_tokens: 600,
         });
 
+
         const aiResponse =
-          completion.choices[0]?.message?.content || "No response";
+            completion.choices[0]?.message?.content || "No response";
 
         const responseLength = aiResponse.split(" ").length;
 
         const randomDelay =
-          Math.floor(Math.random() * 6000) + 1000 + responseLength * 1000;
+            Math.floor(Math.random() * 6000) + 1000 + responseLength * 1000;
 
         chat[room].messages.push({ role: "assistant", content: aiResponse });
         setTimeout(() => {
@@ -335,7 +337,7 @@ io.on("connection", (socket) => {
       }
     } else {
       const otherUser = [...io.sockets.adapter.rooms.get(room)].find(
-        (id) => id !== socket.id
+          (id) => id !== socket.id
       );
       roomData.turn = otherUser || socket.id;
       console.log(`Turn is now: ${roomData.turn}`);
@@ -352,7 +354,7 @@ io.on("connection", (socket) => {
         roomData.occupancy = Math.max(0, roomData.occupancy - 1);
 
         console.log(
-          `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
+            `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
         );
         updateRoomOccupancy();
       }
@@ -364,7 +366,7 @@ function showOccupancy() {
   console.log("Current Room Occupancy:");
   rooms.forEach((room) => {
     console.log(
-      `Room: ${room.name}, Type: ${room.type}, Occupancy: ${room.occupancy}`
+        `Room: ${room.name}, Type: ${room.type}, Occupancy: ${room.occupancy}`
     );
   });
 }
