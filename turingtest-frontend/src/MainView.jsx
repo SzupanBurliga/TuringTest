@@ -112,6 +112,18 @@ function MainView() {
     return `${minutes}:${seconds}`;
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSendMessage();
+    }
+  };
+
+  const handleUsernameKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSetUsername();
+    }
+  };
+
   if (!isUsernameSet) {
     return (
         <div className="username-setup">
@@ -120,6 +132,7 @@ function MainView() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              onKeyPress={handleUsernameKeyPress}
               placeholder="Wprowadź swoją nazwę"
               maxLength={20} // Set maximum length to 20 characters
           />
@@ -141,7 +154,7 @@ function MainView() {
   }
 
   return (
-      <div className="background">
+      <div className="background-MainView">
         {isModalVisible && (
             <Modal
                 title="Czas minął!"
@@ -153,7 +166,7 @@ function MainView() {
             />
         )}
         <div className="container-for-header-timer">
-          <div className="header-text">Witaj, {username}!</div>
+          <div className="header-text">Witaj {username}!</div>
           <div className="chat-topic">Temat rozmowy: {topic}</div>
           <div className="timer">{formatTime(timer)}</div>
         </div>
@@ -164,6 +177,7 @@ function MainView() {
               <UserInput
                   message={message}
                   handleInputChange={handleInputChange}
+                  handleKeyPress={handleKeyPress}
               />
             </div>
             <div>
