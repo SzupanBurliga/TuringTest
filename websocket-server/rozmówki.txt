@@ -1,0 +1,353 @@
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:23:24
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Niepoprawny
+
+Historia rozmowy:
+koko: siema co tam
+martin: hej, lubisz gry komputerowe?
+koko: tak, głównie cs i fifa
+martin: ja też gram w csa, jaki masz rank?
+koko: silver 2 a ty
+martin: global elite
+koko: ta jasne, pewnie nawet nie grasz
+martin: a co lubisz robić poza grami?
+koko: głównie sport
+martin: jaki sport?
+koko: piłka i siłka
+martin: a jakie ćwiczenia na siłce?
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:23:24
+Typ rozmowy: Human
+Głos użytkownika: Human
+Wynik: Poprawny
+
+Historia rozmowy:
+Marek: siema
+Wojtek: elo mordeczko
+Marek: co robisz
+Wojtek: siedze na wykładzie i umieram z nudów
+Marek: ja też, matma?
+Wojtek: ta, analiza
+Marek: współczuję mordo
+Wojtek: a ty co masz
+Marek: ja programowanie
+Wojtek: to też nuda
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:23:24
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Niepoprawny
+
+Historia rozmowy:
+robot: hej, lubisz zwierzęta?
+human: tak, mam kota i psa
+robot: ja też mam kota, jaki jest twój ulubiony kolor?
+human: niebieski
+robot: fajnie, a co lubisz robić w wolnym czasie?
+human: gram w gry
+robot: jakie gry?
+human: minecraft
+robot: a budujesz tam coś fajnego?
+human: domki głównie
+robot: ja wolę survival
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:23:24
+Typ rozmowy: Human
+Głos użytkownika: Human
+Wynik: Poprawny
+
+Historia rozmowy:
+Kamil: siema ziom
+Paweł: no cześć
+Kamil: co tam u ciebie
+Paweł: kurwa nie pytaj
+Kamil: czemu
+Paweł: dziewczyna mnie rzuciła
+Kamil: o chuj, przykro mi
+Paweł: życie jest chujowe
+Kamil: będzie lepiej mordo
+Paweł: ta jasne
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:23:24
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+test: dzień dobry
+user: cześć, co słychać?
+test: wszystko dobrze, właśnie wróciłem z siłowni
+user: co ćwiczyłeś?
+test: plecy i biceps
+user: fajnie, ja wolę nogi
+test: ile robisz na przysiadach?
+user: 100kg a ty?
+test: jeszcze do tego dążę
+user: dasz radę!
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:23:24
+Typ rozmowy: Human
+Głos użytkownika: AI Bot
+Wynik: Niepoprawny
+
+Historia rozmowy:
+Adam: cześć, co lubisz robić?
+Bot123: Ja bardzo lubię pomagać ludziom i rozmawiać z nimi.
+Adam: serio?
+Bot123: Tak, to moje główne zadanie jako asystenta.
+Adam: jesteś botem?
+Bot123: Przepraszam, ale tak, jestem AI.
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:23:24
+Typ rozmowy: AI Bot
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+chatbot: cześć, jaka jest twoja ulubiona książka?
+Ania: "Władca Pierścieni", a twoja?
+chatbot: Moja ulubiona książka to "Harry Potter i Kamień Filozoficzny".
+Ania: czemu akurat ta?
+chatbot: Ponieważ zawiera fascynujące elementy magii i przyjaźni.
+Ania: ok, jesteś botem, prawda?
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:23:24
+Typ rozmowy: Human
+Głos użytkownika: Human
+Wynik: Poprawny
+
+Historia rozmowy:
+Kuba: siema mordo
+Michał: elo elo 320
+Kuba: co tam?
+Michał: łykend się szykuje
+Kuba: jakieś plany?
+Michał: jazda na mieście
+Kuba: ostro?
+Michał: jak zawsze
+Kuba: to potem nie dzwoń xD
+Michał: spokojnie, ogarniemy
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:23:24
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Niepoprawny
+
+Historia rozmowy:
+tester: hej, co sądzisz o najnowszym filmie Marvela?
+user34: szczerze to nie oglądam już marvela
+tester: dlaczego?
+user34: nuda i powtarzalność
+tester: a co lubisz oglądać?
+user34: głównie nolana
+tester: oppenheimer był spoko
+user34: tak, najlepszy film roku
+tester: lepszy niż barbie?
+user34: bez dyskusji
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:33
+Typ rozmowy: Human
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+Zosia: siema
+Anka: hej kotku
+Zosia: idziesz dzisiaj na impre?
+Anka: nie mam z kim :(
+Zosia: no jak to
+Anka: Maciek nie może
+Zosia: znowu?
+Anka: ta...
+Zosia: olej go
+Anka: może masz rację
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:33
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+bot1: znasz jakieś dobre restauracje?
+bot2: kebab na starówce
+bot1: serio? myślałem o czymś lepszym
+bot2: a co chcesz zjeść?
+bot1: coś włoskiego
+bot2: jest nowa pizzeria na rynku
+bot1: byłeś tam?
+bot2: tak, calzone zajebiste
+bot1: to może się wybierzemy?
+bot2: spoko, kiedy?
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:33
+Typ rozmowy: Human
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+Tomek: kurwa mac
+Patryk: co jest?
+Tomek: znowu dojebali mi mandat
+Patryk: za co tym razem
+Tomek: prędkość
+Patryk: ile?
+Tomek: 500
+Patryk: mogło być gorzej
+Tomek: no ale i tak wkurw
+Patryk: rozumiem
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:33
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+test1: hej, byłeś na melanżu?
+test2: ta, u Marka
+test1: jak było?
+test2: super, tylko kac zjebany
+test1: współczuję
+test2: a ty gdzie byłeś?
+test1: w górach
+test2: zazdro
+test1: było warto
+test2: następny razem jadę z wami
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:33
+Typ rozmowy: Human
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+Asia: siema wariatko
+Ola: no hej
+Asia: co tam?
+Ola: właśnie wróciłam z randki
+Asia: i jak było????
+Ola: beznadziejnie
+Asia: czemu?
+Ola: facet tylko o sobie gadał
+Asia: klasyk
+Ola: no niestety
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:33
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+user1: znasz się na samochodach?
+user2: trochę, a co?
+user1: chcę kupić auto do 30k
+user2: co brałeś pod uwagę?
+user1: może jakiegoś golfa?
+user2: dobry wybór, ale uważaj na przebieg
+user1: na co jeszcze?
+user2: rdza w progach
+user1: dzięki za rady
+user2: nie ma sprawy
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:33
+Typ rozmowy: Human
+Głos użytkownika: Human
+Wynik: Poprawny
+
+Historia rozmowy:
+Piotrek: ej, odrobiłeś pracę domową?
+Karol: jaką znowu?
+Piotrek: z matmy
+Karol: o ja Cie, na kiedy to?
+Piotrek: na jutro
+Karol: wyślij pliska
+Piotrek: też nie mam XD
+Karol: to jesteśmy w ...
+Piotrek: jak zwykle
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:33
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+bot5: hej, co robisz w święta?
+bot6: jade do rodziny
+bot5: gdzie to?
+bot6: do Krakowa
+bot5: fajnie, na ile?
+bot6: cały tydzień
+bot5: zazdroszczę
+bot6: a ty co?
+bot5: siedzę w robocie
+bot6: współczuję
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:33
+Typ rozmowy: Human
+Głos użytkownika: Human
+Wynik: Poprawny
+
+Historia rozmowy:
+Robert: kurwa ale się najebałem wczoraj
+Marek: widziałem XD
+Robert: co oodwaliłem?
+Marek: lepiej nie pytaj
+Robert: aż tak źle?
+Marek: tańczyłeś na stole
+Robert: ja pierdole
+Marek: są filmiki
+Robert: kasuj to
+Marek: nigdy w życiu
+
+=====================================
