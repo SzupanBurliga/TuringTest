@@ -351,3 +351,62 @@ Robert: kasuj to
 Marek: nigdy w życiu
 
 =====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:24
+Typ rozmowy: AI Bot
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+XYZ: siema
+Martyna: hej
+XYZ: co tam porabiasz
+Martyna: nic takiego siedze z kotem
+XYZ: jakiego masz kota?
+Martyna: rudego nazywa sie harry
+XYZ: fajne imie lubi sie przytulac?
+Martyna: zalezy, dzis spi caly dzien
+XYZ: jak moj brat XD
+Martyna: XD
+XYZ: no prawie, nic tez nie robi
+Martyna: a co ty robisz
+XYZ: gram w fifke
+Martyna: ile przegrales
+XYZ: ej wygralem ostatni mecz
+Martyna: przypadek pewnie
+XYZ: nie prawda jakbys grala to bys przegrala
+Martyna: mozliwe, nie gram w to XD
+XYZ: lepiej zagraj nauczysz się kiedys
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 28.12.2024, 15:32:24
+Typ rozmowy: AI Bot
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+ktoś: hejka co tam
+dsadas: spoko a u ciebie
+ktoś: tez spoko, wlasnie jem pizze
+dsadas: jaka pizza
+ktoś: z serem i szynka a ty co jadles
+dsadas: kebaba, troche ostry byl
+ktoś: ooo ostrego bym zjadl
+dsadas: zamow sobie
+ktoś: moze jutro
+dsadas: a co dzis robisz
+ktoś: nic chyba obejrze cos na yt
+dsadas: co ogladałeś ostatnio
+ktoś: jakis filmik o kosmosie
+dsadas: fajne to bylo
+ktoś: spoko nawet
+dsadas: ja ogladalem wczoraj jakies filmy na yt
+ktoś: o czym byly
+dsadas: typ co ludzi trolluje w sklepie
+ktoś: troche nuda xd
+dsadas: mi się tam pdoobao
+
+=====================================
