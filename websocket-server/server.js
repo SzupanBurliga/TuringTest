@@ -1,3 +1,4 @@
+const Groq = require("groq-sdk");
 require("dotenv").config();
 const OpenAI = require("openai");
 const express = require("express");
@@ -45,9 +46,8 @@ app.get("/api/results", (req, res) => {
   res.json(results);
 });
 
-const openai = new OpenAI({
-  apiKey: process.env.API_KEY,
-  baseURL: "https://api.x.ai/v1",
+const groq = new Groq({
+  apiKey: process.env.API_KEY
 });
 
 const server = http.createServer(app);
@@ -277,8 +277,8 @@ io.on("connection", (socket) => {
 
     if (roomData?.type === "AI") {
       try {
-        const completion = await openai.chat.completions.create({
-          model: "grok-beta",
+        const completion = await groq.chat.completions.create({
+          model: "llama3-70b-8192",
           messages: [
             {
               role: "system",
