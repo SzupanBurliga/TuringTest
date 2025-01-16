@@ -8,8 +8,8 @@ const Loader = ({ delay = 3000 }) => {
     const [isPastTime, setIsPastTime] = useState(false);
 
     //TU ZMIEŃ GODZINĘ I MINUTĘ NA KTÓRĄ MA SIĘ OTWORZYĆ CHAT
-    const godzina = 11;
-    const minuta = 30;
+    const godzina = 13;
+    const minuta = 10;
 
     useEffect(() => {
         const checkTime = () => {

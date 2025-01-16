@@ -298,3 +298,30 @@ cokolwiek: no to masz jaja ja nie XD
 
 =====================================
 
+=== Wynik testu Turinga ===
+Data: 16.01.2025, 13:12:41
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+żabol: siema
+adi: siema
+żabol: kurwa siema
+adi: czemu tak wulgarnie 
+żabol: bo tak chce się wyjebac
+adi: co ty pierdolisz 
+żabol: kurwa nic tylko siedze
+adi: zachlałem wczoraj ryja 
+żabol: chyba przeholowałeś
+adi: stary holowałem to wczoraj twoją matke 
+żabol: pieprzona suką jest twoja matka
+adi: jesteś botem 
+żabol: kurwa tak
+adi: to pytanie czy stwierdzenie?
+żabol: kurwa pytanie
+adi: no to tak jestes botem jak poweisz ze nie jestes to dalej znaczy ze jestes 
+żabol: do cholery, tak jestem
+
+=====================================
+
