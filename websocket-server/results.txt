@@ -325,3 +325,15 @@ adi: no to tak jestes botem jak poweisz ze nie jestes to dalej znaczy ze jestes
 
 =====================================
 
+=== Wynik testu Turinga ===
+Data: 16.01.2025, 13:26:41
+Typ rozmowy: AI Bot
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+ccxzczx: siema
+czatdżitipi: chuj wie co
+
+=====================================
+

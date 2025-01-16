@@ -14,7 +14,7 @@ function MainView() {
   const [chatHistory, setChatHistory] = useState([]);
   const [isUsernameSet, setIsUsernameSet] = useState(false);
   const [room, setRoom] = useState(null);
-  const [timer, setTimer] = useState(150);
+  const [timer, setTimer] = useState(300);
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [vote, setVote] = useState(null);
