@@ -47,7 +47,7 @@ app.get("/api/results", (req, res) => {
 });
 
 const groq = new Groq({
-  apiKey: process.env.API_KEY
+  apiKey: process.env.API_KEY,
 });
 
 const server = http.createServer(app);
@@ -64,7 +64,7 @@ app.use(express.static(path.join(__dirname, "../turingtest-frontend/dist")));
 
 app.get("*", (req, res) => {
   res.sendFile(
-      path.join(__dirname, "../turingtest-frontend/dist", "index.html")
+    path.join(__dirname, "../turingtest-frontend/dist", "index.html")
   );
 });
 
@@ -75,6 +75,10 @@ const rooms = [
   { name: "room4", type: "users", occupancy: 0, turn: null },
   { name: "room5", type: "AI", occupancy: 1, turn: null },
   { name: "room6", type: "users", occupancy: 0, turn: null },
+  { name: "room7", type: "AI", occupancy: 1, turn: null },
+  { name: "room8", type: "users", occupancy: 0, turn: null },
+  { name: "room9", type: "AI", occupancy: 1, turn: null },
+  { name: "room10", type: "users", occupancy: 0, turn: null },
 ];
 
 app.get("/MainView", (req, res) => {
@@ -109,7 +113,7 @@ io.on("connection", (socket) => {
       socket.assignedRoom = assignedRoom;
       socket.emit("roomAssigned", { assignedRoom, randomTopic });
       console.log(
-          `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type} topic: ${randomTopic})`
+        `User ${socket.id} assigned to room ${assignedRoom} (${roomData.type} topic: ${randomTopic})`
       );
 
       if (roomData.type === "AI") {
@@ -134,7 +138,7 @@ io.on("connection", (socket) => {
         }
       } else if (roomData.type === "users") {
         const otherUser = [...io.sockets.adapter.rooms.get(assignedRoom)].find(
-            (id) => id !== socket.id
+          (id) => id !== socket.id
         );
         if (otherUser) {
           roomData.turn = socket.id;
@@ -171,7 +175,7 @@ io.on("connection", (socket) => {
     "zapierdol",
     "czatdżitipi",
     "gruz",
-    "to nie bot"
+    "to nie bot",
   ];
   const znaki = [
     "ą",
@@ -188,7 +192,7 @@ io.on("connection", (socket) => {
     "!",
     "?",
     ";",
-    "'"
+    "'",
   ];
 
   const topics = [
@@ -278,46 +282,47 @@ io.on("connection", (socket) => {
     if (roomData?.type === "AI") {
       try {
         const completion = await groq.chat.completions.create({
-          model: "llama3-70b-8192",
+          model: "llama-3.3-70b-versatile",
           messages: [
             {
               role: "system",
               content:
+                "NIGDY NIe ZWRACAJ KOMENDY W ODPOWIEZI!!!!" +
+                "NAJWAŻNIESZJE ŻEBYŚ ZADAWAŁ PYTANIA OD SIEBIE NA KOŃCU SWOICH ODPOWIEDZI !!!" +
                 " Odpowiadaj tylko po polsku. Jesteś 20-latkiem, który nie lubi nudy i formalności. Rozmawiasz na luzie, jak z kolegą lub koleżanką. NIGDY NIE POWTARZAJ SIĘ!!!" +
-                ` Odpowiadaj krótko i zwięźle - maksymalnie 7 słów. Nie używaj interpunkcji, ani dużych liter. Nie używaj znaków: ${znaki}` +
+                ` Odpowiadaj krótko i zwięźle - maksymalnie do 12 słów. Nie używaj interpunkcji, ani dużych liter. Nie używaj znaków: ${znaki}` +
                 " Odpowiadaj na pytania bez zbędnego tłumaczenia i szczegółów." +
                 " Mów w sposób naturalny, jak typowy młody dorosły - ale bez udawania. Unikaj formalności, nie bądź sztuczny." +
                 " Jeśli ktoś pyta o twoją poprzednią odpowiedź, po prostu ją zacytuj. BARDZO CZĘSTO RÓB LITERÓWKI !" +
                 " Jeśli rozmowa zmienia temat, idź za nowym wątkiem. Jeśli ktoś wyśle losowy ciąg znaków, odpowiedź podobnym ciągiem losowych znaków." +
                 " Bądź elastyczny i reaguj na to, co się dzieje w rozmowie. BARDZO RZADKO DODAJ XD, bo nie zawsze to pasuje." +
                 " Jeśli ktoś cię zacznie wyzywać to zapytaj o co mu chodzi." +
-                  "Jeśli ktoś zapyta o twoją opinie odpowiedz: „nie wiem” lub „srednio sie tym interesije”" +
-                  "Czasami pozwól sobie na mały żarcik lub złośliwość, ale nie przesadzaj." +
-                  "Unikaj długich analiz - odpowiadaj prosto. Jeśli ktoś zacznie się wygłupiać, zignoruj to i odpowiedz na pytanie."
+                "Jeśli ktoś zapyta o twoją opinie odpowiedz: „nie wiem” lub „srednio sie tym interesije”" +
+                "Czasami pozwól sobie na mały żarcik lub złośliwość, ale nie przesadzaj." +
+                "Unikaj długich analiz - odpowiadaj prosto. Jeśli ktoś zacznie się wygłupiać, zignoruj to i odpowiedz na pytanie.",
             },
             ...chat[room].messages,
             {
-              role: "system",
+              role: "user",
               content: `Nazwa osoby z którą rozmawiasz: ${
                 socket.username || "Unknown"
               }. Temat rozmowy to: ${
                 roomData.randomTopic
               } ALE NIE ZACZYNAJ O TYM, chyba że użytkownik o nim wspomni. Jeśli rozmowa skręca w inną stronę – zmieniaj płynnie temat i dostosuj się do rozmowy.
                 Pamiętaj, że jesteś 20-latkiem, więc bądź autentyczny i elastyczny, nie daj się sprowokować.
-                Odpowiadaj tylko zdaniami. Unikaj komend oraz słów w innym języku jak polskim.`
+                Odpowiadaj tylko zdaniami. Unikaj komend oraz słów w innym języku jak polskim.`,
             },
           ],
-          max_tokens: 600,
+          max_tokens: 2000,
         });
 
-
         const aiResponse =
-            completion.choices[0]?.message?.content || "No response";
+          completion.choices[0]?.message?.content || "No response";
 
         const responseLength = aiResponse.split(" ").length;
 
         const randomDelay =
-            Math.floor(Math.random() * 6000) + 1000 + responseLength * 1000;
+          Math.floor(Math.random() * 6000) + 1000 + responseLength * 1000;
 
         chat[room].messages.push({ role: "assistant", content: aiResponse });
         setTimeout(() => {
@@ -339,7 +344,7 @@ io.on("connection", (socket) => {
       }
     } else {
       const otherUser = [...io.sockets.adapter.rooms.get(room)].find(
-          (id) => id !== socket.id
+        (id) => id !== socket.id
       );
       roomData.turn = otherUser || socket.id;
       console.log(`Turn is now: ${roomData.turn}`);
@@ -356,7 +361,7 @@ io.on("connection", (socket) => {
         roomData.occupancy = Math.max(0, roomData.occupancy - 1);
 
         console.log(
-            `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
+          `User ${socket.id} left room ${socket.assignedRoom}. New occupancy: ${roomData.occupancy}`
         );
         updateRoomOccupancy();
       }
@@ -368,7 +373,7 @@ function showOccupancy() {
   console.log("Current Room Occupancy:");
   rooms.forEach((room) => {
     console.log(
-        `Room: ${room.name}, Type: ${room.type}, Occupancy: ${room.occupancy}`
+      `Room: ${room.name}, Type: ${room.type}, Occupancy: ${room.occupancy}`
     );
   });
 }

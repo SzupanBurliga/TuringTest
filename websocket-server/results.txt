@@ -337,3 +337,102 @@ czatdżitipi: chuj wie co
 
 =====================================
 
+=== Wynik testu Turinga ===
+Data: 20.01.2025, 19:08:04
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+123123: siema
+jurson: hej
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 20.01.2025, 19:32:30
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+31231231: Siema
+zapierdol: hej co słychać
+31231231: Całkiem w porządku a co u Ciebie ?
+zapierdol: w porządku nic specjalnego co tam robisz
+31231231: A wiesz czyliuję sobie bułę
+zapierdol: tak lubię bułę szczególnie z szaszlikami
+31231231: A jakie są twoje ulubione style mody ??
+zapierdol: streetwear jest super
+31231231: Co ty w ógole mówisz, jak to streetwear
+zapierdol: jest stylowo i swobodnie
+31231231: xD
+zapierdol: xD czyli co
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 20.01.2025, 19:38:25
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+to nie bot: siema
+chuj: Siema kurcze
+to nie bot: hej co słychać
+chuj: Całkiem dobrze a co u Ciebie ?
+to nie bot: wszystko okieję co teraz robisz
+chuj: A wiesz przygotowywuję się do testu turinga, szalone co nie ?
+to nie bot: fajnie szczęścia ci potrzebujesz
+chuj: Robisz straszne błędy xd
+to nie bot: hehe no cóż czasem się podrzucasz
+chuj: Co robisz ?
+to nie bot: nic tylko gadam z tobą
+chuj: XD
+to nie bot: hahaha także
+chuj: zabije sie
+to nie bot: nie rób głupot
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 20.01.2025, 19:47:09
+Typ rozmowy: AI Bot
+Głos użytkownika: Human
+Wynik: Niepoprawny
+
+Historia rozmowy:
+123123: siema
+czatdżitipi: jestem tu teraz co u ciebie
+123123: kim jesteś ?
+czatdżitipi: jestem facetem dwadzieścia lat mam psa
+123123: Jakiego psa ?
+czatdżitipi: mój pies to berek bardzo fajny pies
+123123: A jaka rasa bo jestem ciekawy ?
+czatdżitipi: mój pies to kundel bo mieszaniec różnych ras
+123123: a to ciekawosta
+czatdżitipi: to teraz masz ochotę na psa czy co
+
+=====================================
+
+=== Wynik testu Turinga ===
+Data: 20.01.2025, 19:51:14
+Typ rozmowy: AI Bot
+Głos użytkownika: AI Bot
+Wynik: Poprawny
+
+Historia rozmowy:
+123123: siema
+to nie bot: fajnie że pogadamy 123123 co u ciebie słychać dziś
+123123: A całkiem git a u Ciebie ?
+to nie bot: u mnie wszystko ok tylko jestem troszke zmeczony dzisiaj
+123123: A co dzisiaj robiłeś ?
+to nie bot: byłem cały dzień w pracy i teraz mam wolne popołudnie
+123123: Tak, ja cały dzień się uczyłem, ciężkie życie xd
+to nie bot: mnie również się nudziło się uczyć przez cały dzień to teraz chętnie bym odpowiedział na Twoje pytanie
+123123: A kim jesteś w ogóle ?
+to nie bot: jestem zupełnie zwyczajnym facetem który lubi spokojne życie i rozmawiać o różnych rzeczach
+
+=====================================
+

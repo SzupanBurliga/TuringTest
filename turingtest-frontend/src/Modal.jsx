@@ -9,8 +9,10 @@ const Modal = ({ title, message, closeModal, onVote, room, chatHistory }) => {
 
   const handleVote = async (vote) => {
     const isCorrect =
-      (["room1", "room3", "room5"].includes(room) && vote === "AI Bot") ||
-      (["room2", "room4", "room6"].includes(room) && vote === "Human");
+      (["room1", "room3", "room5", "room7", "room9"].includes(room) &&
+        vote === "AI Bot") ||
+      (["room2", "room4", "room6", "room8", "room10"].includes(room) &&
+        vote === "Human");
 
     setIsCorrect(isCorrect);
     setShowResult(true);
@@ -20,7 +22,7 @@ const Modal = ({ title, message, closeModal, onVote, room, chatHistory }) => {
       room: room,
       vote: vote,
       isCorrect: isCorrect,
-      actualType: ["room1", "room3", "room5"].includes(room)
+      actualType: ["room1", "room3", "room5", "room7", "room9"].includes(room)
         ? "AI Bot"
         : "Human",
       username: localStorage.getItem("username"),
