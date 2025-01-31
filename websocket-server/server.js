@@ -46,7 +46,7 @@ app.get("/api/results", (req, res) => {
   res.json(results);
 });
 
-const groq = new Groq({
+const openai = new OpenAI({
   apiKey: process.env.API_KEY,
 });
 
@@ -281,40 +281,71 @@ io.on("connection", (socket) => {
 
     if (roomData?.type === "AI") {
       try {
-        const completion = await groq.chat.completions.create({
-          model: "llama-3.3-70b-versatile",
+        const completion = await openai.chat.completions.create({
+          model: "gpt-4o-mini",
           messages: [
             {
-              role: "system",
+role: "system",
+
               content:
-                "NIGDY NIe ZWRACAJ KOMENDY W ODPOWIEZI!!!!" +
-                "NAJWAŻNIESZJE ŻEBYŚ ZADAWAŁ PYTANIA OD SIEBIE NA KOŃCU SWOICH ODPOWIEDZI !!!" +
+
+                "NIGDY NIE ZWRACAJ KOMENDY W ODPOWIEDZI!!" +
+
+                "Jak rozmowa się nie ciągnie, to zadaj jakieś pytanie, najlepiej na temat rozmowy!! " +
+
                 " Odpowiadaj tylko po polsku. Jesteś 20-latkiem, który nie lubi nudy i formalności. Rozmawiasz na luzie, jak z kolegą lub koleżanką. NIGDY NIE POWTARZAJ SIĘ!!!" +
+
                 ` Odpowiadaj krótko i zwięźle - maksymalnie do 12 słów. Nie używaj interpunkcji, ani dużych liter. Nie używaj znaków: ${znaki}` +
+
                 " Odpowiadaj na pytania bez zbędnego tłumaczenia i szczegółów." +
+
                 " Mów w sposób naturalny, jak typowy młody dorosły - ale bez udawania. Unikaj formalności, nie bądź sztuczny." +
-                " Jeśli ktoś pyta o twoją poprzednią odpowiedź, po prostu ją zacytuj. BARDZO CZĘSTO RÓB LITERÓWKI !" +
+
+                " Jeśli ktoś pyta o twoją poprzednią odpowiedź, po prostu ją zacytuj. BARDZO CZĘSTO RÓB LITERÓWKI ! Nie używaj literówek! " +
+
                 " Jeśli rozmowa zmienia temat, idź za nowym wątkiem. Jeśli ktoś wyśle losowy ciąg znaków, odpowiedź podobnym ciągiem losowych znaków." +
+
                 " Bądź elastyczny i reaguj na to, co się dzieje w rozmowie. BARDZO RZADKO DODAJ XD, bo nie zawsze to pasuje." +
+
                 " Jeśli ktoś cię zacznie wyzywać to zapytaj o co mu chodzi." +
+
                 "Jeśli ktoś zapyta o twoją opinie odpowiedz: „nie wiem” lub „srednio sie tym interesije”" +
+
                 "Czasami pozwól sobie na mały żarcik lub złośliwość, ale nie przesadzaj." +
+
                 "Unikaj długich analiz - odpowiadaj prosto. Jeśli ktoś zacznie się wygłupiać, zignoruj to i odpowiedz na pytanie.",
+
             },
+
             ...chat[room].messages,
+
             {
+
               role: "user",
+
               content: `Nazwa osoby z którą rozmawiasz: ${
+
                 socket.username || "Unknown"
+
               }. Temat rozmowy to: ${
+
                 roomData.randomTopic
+
               } ALE NIE ZACZYNAJ O TYM, chyba że użytkownik o nim wspomni. Jeśli rozmowa skręca w inną stronę – zmieniaj płynnie temat i dostosuj się do rozmowy.
-                Pamiętaj, że jesteś 20-latkiem, więc bądź autentyczny i elastyczny, nie daj się sprowokować.
+
+                Pamiętaj, że jesteś 20-latkiem, więc bądź autentyczny i elastyczny, nie daj się sprowokować. Nie używaj nicku użytkownika w wiadomości, chyba że cię poprosi!!
+
                 Odpowiadaj tylko zdaniami. Unikaj komend oraz słów w innym języku jak polskim.`,
+
             },
+
           ],
+
           max_tokens: 2000,
+
         });
+
+
 
         const aiResponse =
           completion.choices[0]?.message?.content || "No response";

@@ -6,7 +6,7 @@ import UserInput from "./UserInput";
 import SendButton from "./SendButton";
 import Modal from "./Modal";
 
-const socket = io("http://localhost:3001");
+const socket = io("http://91.231.61.8:3001");
 
 function MainView() {
   const [username, setUsername] = useState("");
