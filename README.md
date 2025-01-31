@@ -9,7 +9,7 @@ ___
 - Backend: JavaScript
 ___
 ## Jak uruchomić?
-
+` git clone https://github.com/SzupanBurliga/TuringTest.git
 
 ___
 # Screeny z aplikacji:
