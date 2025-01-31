@@ -5,8 +5,8 @@ Interaktywna aplikacja internetowa, w której użytkownicy biorą udział w żyw
 ___
 
 ## Tech Stack ⚙️
-- Frontend :
-- 
+- Frontend : React
+- Backend: JavaScript
 ___
 
 
