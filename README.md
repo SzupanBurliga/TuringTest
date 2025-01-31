@@ -9,7 +9,16 @@ ___
 - Backend: JavaScript
 ___
 ## Jak uruchomić?
-` git clone https://github.com/SzupanBurliga/TuringTest.git
+Klonujemy repo
+git clone https://github.com/SzupanBurliga/TuringTest.git
+Instalowanie zależności 
+(folder turingtest-frontend)
+npm i
+Buildowanie frontu
+npm run build
+
+Instalowanie zależności na serwerze
+(folder websocket-server)
 
 ___
 # Screeny z aplikacji:
