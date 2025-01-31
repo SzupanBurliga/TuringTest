@@ -8,7 +8,7 @@ ___
 - Frontend : React
 - Backend: JavaScript
 ___
-
+## Jak uruchomić?
 
 
 ___
