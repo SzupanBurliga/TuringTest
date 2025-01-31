@@ -30,7 +30,7 @@ const Modal = ({ title, message, closeModal, onVote, room, chatHistory }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:3001/api/results", {
+      const response = await fetch("http://91.231.61.8:3001/api/results", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

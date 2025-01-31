@@ -16,7 +16,7 @@ function Results() {
   const fetchResults = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:3001/api/results");
+      const response = await fetch("http://91.231.61.8:3001/api/results");
       const data = await response.json();
       setResults(data.reverse());
       setError(null);
